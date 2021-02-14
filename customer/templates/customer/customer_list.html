@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{# {% load bootstrap4 %} #}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    {% include './list_header.html' %}
+    {% if filter %}
+        {% crispy filter.form customer_filter_helper %}
+    {% endif %}
+    <br />
+    {% render_table table %}
+{% endblock %}

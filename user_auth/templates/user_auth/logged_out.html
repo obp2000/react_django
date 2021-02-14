@@ -1,0 +1,7 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{# {% load bootstrap4 %} #}
+{% block content %}
+	{# {% bootstrap_messages %} #}
+	<a  href="{% url 'login' %}">{{ _('login')|title }}</a>
+{% endblock %}

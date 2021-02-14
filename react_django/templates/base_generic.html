@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+        <title>React Boilerplate</title>
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+    <!-- Add additional CSS in static file -->
+    {# {% load static %} #}
+    {#    <link rel="stylesheet" href="{% static 'customer/css/styles.css' %}"> #}
+    {% include 'favicon.html' %}
+</head>
+
+<body>
+    <div class="container">
+        {% block navbar %}
+            {{ navbar.render }}
+            <br />
+        {% endblock %}
+        {% bootstrap_messages %}
+        {% block content %}{% endblock %}
+        {# {% if is_paginated %} #}
+            {# {% block pagination %} #}
+                {# {% include 'pagination.html' %} #}
+            {# {% endblock %} #}
+        {# {% endif %} #}
+    </div>
+</body>
+</html>

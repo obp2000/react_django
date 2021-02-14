@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-7">
+        <h3>{% trans "customers"|title %} ({{ paginator.count }})</h3>
+    </div>
+    <div class="col-sm-5">
+
+    </div>
+</div>
+<table class="table table-sm table-striped table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">{% trans "nick"|title %}</th>
+            <th scope="col">{% trans "name"|title %}</th>
+            <th scope="col">{% trans "created_at"|title %}</th>
+            <th scope="col">{% trans "updated_at"|title %}</th>
+            <th scope="col">
+                <a href="{% url 'customer-new' %}" class="btn btn-outline-primary btn-sm">
+                    {% trans "new"|title %}
+                </a>
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in page_obj %}
+        <tr>
+            <td>{{customer.id}}</td>
+            <td>{{customer.nick}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.created_at}}</td>
+            <td>{{customer.updated_at}}</td>
+            <td>
+                <a href="{% url 'customer-update' customer.id %}" class="btn btn-outline-primary btn-sm">
+                    {% trans "edit"|title %}
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'customer-delete' customer.id %}" class="btn btn-outline-primary btn-sm">
+                    {% trans "delete"|title %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

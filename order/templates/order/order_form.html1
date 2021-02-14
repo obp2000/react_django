@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{# {% load static %} #}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{# {% load bootstrap4 %} #}
+{# {% load crispy_forms_field %} #}
+{% block content %}
+<form method="post">
+    {% crispy form %}
+    {% crispy order_items %}
+	<table class="table table-sm">
+		<tbody>
+			<tr>
+				<td class="form-group"><div></div></td>
+				{% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.sum %}
+			</tr>
+		</tbody>
+	</table>
+
+    <button type="submit" class="btn btn-primary">{% trans "save"|title %}</button>
+    {# {% buttons %}{% endbuttons %} #}
+</form>
+{% endblock %}

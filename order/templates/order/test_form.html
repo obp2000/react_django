@@ -1,0 +1,55 @@
+  <form method="post">
+    {% csrf_token %}
+    {# {{ form.media }} #}
+    {{ form|crispy }}
+    <table class="table table-sm table-striped table-bordered table-hover">
+      {% for formset in inlines %}
+        {{ formset.management_form }}
+        <thead class="thead-light">
+          <tr class="d-flex">
+            <th scope="col" class="col-1">№ п/п</th>
+            <th scope="col" class="col-6">{{ formset.form.product.label_tag }}</th>
+            <th scope="col" class="col-1">Цена, руб.</th>
+            <th scope="col" class="col-1">Метраж</th>
+            <th scope="col" class="col-1">Стоимость, sруб.</th>
+            <th scope="col" class="col-1">Вес, гр.</th>
+            <th scope="col" class="col-1"></th>
+          </tr>
+        </thead>
+          <tbody>
+            {% for order_item_form in formset %}
+              {# {{ order_item_form|crispy }} #}
+              <tr class="d-flex">
+                <th scope="row" class="col-sm-1">
+                    {{ order_item_form.id }}
+                    {{ order_item_form.order }}
+                </th>
+                <td class="col-sm-6">
+                  {{ order_item_form.product.errors }}
+                  {{ order_item_form.product }}
+                </td>
+                <td class="col-sm-1">
+                  {{ order_item_form.price.errors }}
+                  {{ order_item_form.price }}
+                </td>
+                <td class="col-sm-1">
+                  {{ order_item_form.amount.errors }}
+                  {{ order_item_form.amount }}
+                </td>
+                <td class="col-sm-1 text-right">
+
+                </td>
+                <td class="col-sm-1 text-right">
+
+                </td>
+                <td class="col-sm-1">
+
+                </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      {% endfor %}
+    </table> 
+
+    <button type="submit" class="btn btn-primary">{% trans "save"|title %}</button>
+  </form>

@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-20 22:54+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: product/forms.py:44
+msgid "save"
+msgstr ""
+
+#: product/models.py:12 product/templates/product/product_list.html:17
+msgid "name"
+msgstr "Наименование"
+
+#: product/models.py:13 product/templates/product/product_list.html:18
+msgid "price"
+msgstr "Цена"
+
+#: product/models.py:14
+msgid "weight"
+msgstr "вес"
+
+#: product/models.py:16 product/templates/product/product_list.html:19
+msgid "width"
+msgstr "ширина"
+
+#: product/models.py:17 product/templates/product/product_list.html:20
+msgid "density"
+msgstr "плотность"
+
+#: product/models.py:18
+msgid "dollar_price"
+msgstr "цена, $/кг"
+
+#: product/models.py:20
+msgid "dollar_rate"
+msgstr "курс $"
+
+#: product/models.py:22
+msgid "width_shop"
+msgstr "ширина для витрины"
+
+#: product/models.py:23
+msgid "density_shop"
+msgstr "плотность для витрины"
+
+#: product/models.py:25
+msgid "weight_for_count"
+msgstr "вес отреза, гр."
+
+#: product/models.py:27
+msgid "length_for_count"
+msgstr "длина отреза, м"
+
+#: product/models.py:29
+msgid "price_pre"
+msgstr "цена до выкупа, руб./м"
+
+#: product/models.py:30
+msgid "image"
+msgstr "фото"
+
+#: product/models.py:31 product/templates/product/product_list.html:21
+msgid "created_at"
+msgstr ""
+
+#: product/models.py:32 product/templates/product/product_list.html:22
+msgid "updated_at"
+msgstr ""
+
+#: product/models.py:41
+msgid "product"
+msgstr "ткань"
+
+#: product/models.py:42 product/templates/product/product_list.html:7
+msgid "products"
+msgstr "ткани"
+
+#: product/templates/product/product_confirm_delete.html:4
+#: product/templates/product/product_list.html:48
+msgid "Delete"
+msgstr ""
+
+#: product/templates/product/product_confirm_delete.html:5
+msgid "Yes"
+msgstr ""
+
+#: product/templates/product/product_confirm_delete.html:6
+msgid "No"
+msgstr ""
+
+#: product/templates/product/product_list.html:18
+msgid "currency"
+msgstr "руб."
+
+#: product/templates/product/product_list.html:19
+msgid "santimeters"
+msgstr "см"
+
+#: product/templates/product/product_list.html:25
+msgid "new"
+msgstr ""
+
+#: product/templates/product/product_list.html:43
+msgid "edit"
+msgstr ""
