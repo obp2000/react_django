@@ -3,6 +3,9 @@ from django.db.models import Model, CharField, IntegerField, \
     DecimalField, Sum, F, QuerySet, Manager, IntegerChoices
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.utils import dateformat
+from django.conf.locale.ru.formats import DATETIME_FORMAT
+from decimal import Decimal
 from customer.models import Customer
 from delivery_type.models import DeliveryType
 
@@ -26,7 +29,8 @@ class OrderQuerySet(QuerySet):
                                         F('order_items__product__density') *
                                         F('order_items__product__width') /
                                         100,
-                                        output_field=IntegerField(blank=True)))
+                                        output_field=IntegerField(blank=True))
+                             ).order_by('-created_at')
 
 
 class Order(Model):
@@ -43,13 +47,40 @@ class Order(Model):
     address = CharField(_('address'), max_length=255, blank=True)
     gift = CharField(_('gift'), max_length=255, blank=True)
 
-    objects = Manager()
+    # objects = Manager()
     orders = OrderQuerySet.as_manager()
 
-    # @classmethod
-    # def test1(cls):
-    #     return cls.objects.annotate(sum=Sum(F('order_items__price')
-    #                                 * F('order_items__amount')))
+    GIFT_WEIGHT = 100
+    PACKET_WEIGHT = 50
+    SAMPLES_WEIGHT = 50
+
+    @property
+    def post_cost_with_packet(self):
+        return (self.post_cost or 0) + (self.packet or 0)
+
+    @property
+    def post_discount(self):
+        return 0 if self.sum < 1000 else Decimal(self.post_cost_with_packet * 0.3)
+
+    @property
+    def total_postals(self):
+        return self.post_cost_with_packet - self.post_discount
+
+    @property
+    def total_sum(self):
+        return self.sum + self.total_postals
+
+    @property
+    def need_gift(self):
+        return self.sum >= 2000 
+
+    @property
+    def gift_weight(self):
+        return self.GIFT_WEIGHT if self.need_gift else 0
+
+    @property
+    def total_weight(self):
+        return self.weight + self.gift_weight + self.PACKET_WEIGHT + self.SAMPLES_WEIGHT
 
     def get_absolute_url(self):
         return reverse('order-update', kwargs={'pk': self.pk})
@@ -60,3 +91,7 @@ class Order(Model):
         ordering = ['-created_at']
         verbose_name = _('order')
         verbose_name_plural = _('orders')
+
+    def __str__(self):
+        return "%s №%s %s %s" % (self._meta.verbose_name.capitalize(), self.id, _('from'), 
+               dateformat.format(self.created_at, DATETIME_FORMAT),)

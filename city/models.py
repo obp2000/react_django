@@ -4,7 +4,7 @@ from django.utils.translation import pgettext_lazy
 
 
 class City(Model):
-    pindex = CharField(_('index'), primary_key=True, max_length=6)
+    pindex = CharField(_('pindex'), primary_key=True, max_length=6)
     city = CharField(pgettext_lazy('city name', 'name'), unique=True, max_length=80)
 
     class Meta:

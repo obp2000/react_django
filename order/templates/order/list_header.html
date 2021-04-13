@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load bootstrap4 %}
+<div class="row">
+    <div class="col-sm-3">
+        <h4>{% trans "orders"|title %} ({{ table.paginator.count }})</h4>
+    </div>
+    <div class="col-sm-3">
+        {% url 'order-new' as order_new_url %}
+        {% trans "new"|title as order_new_title%}
+        {% bootstrap_button order_new_title button_type='link' href=order_new_url%}
+    </div>
+</div>
+</br>

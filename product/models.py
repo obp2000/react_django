@@ -31,6 +31,32 @@ class Product(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
+    @property
+    def one_m_weight(self):
+        return (self.density or 0) * (self.width or 0) / 100
+    
+    @property
+    def price_rub_m(self):
+        return (self.dollar_price or 0) * (self.dollar_rate or 0) * \
+               (self.density or 0) * (self.width or 0) / 100000
+    # price_rub_m.blank = True
+    # price_rub_m.verbose_name = _('sum555')
+    # price_rub_m = property(price_rub_m)
+
+    @property
+    def density_for_count(self):
+        if (self.weight_for_count or 0) > 0 and (self.length_for_count or 0) > 0 and (self.width or 0) > 0:
+            return self.weight_for_count / self.length_for_count / self.width * 100
+        else:
+            return 0
+
+    @property        
+    def meters_in_roll(self):
+        if (self.weight or 0) > 0 and (self.density or 0) > 0 and (self.width or 0) > 0: 
+            return self.weight * 100000 / self.density / self.width
+        else:
+            return 0
+
     def get_absolute_url(self):
         return reverse('product-update', kwargs={'pk': self.pk})
 

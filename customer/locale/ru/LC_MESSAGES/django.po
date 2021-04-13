@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-20 22:54+0300\n"
+"POT-Creation-Date: 2021-03-27 23:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,25 +20,25 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: customer/forms.py:19
+#: customer/forms.py:24
 msgid "save"
-msgstr ""
+msgstr "сохранить"
 
-#: customer/forms.py:42
+#: customer/forms.py:45
 msgid "search"
-msgstr ""
-
-#: customer/forms.py:51 customer/tables.py:11
-msgid "Delete"
-msgstr ""
-
-#: customer/forms.py:53
-msgid "Yes"
-msgstr ""
+msgstr "поиск"
 
 #: customer/forms.py:55
-msgid "No"
-msgstr ""
+msgid "delete"
+msgstr "удалить"
+
+#: customer/forms.py:58
+msgid "are you sure you want to delete"
+msgstr "вы уверены, что хотите удалить"
+
+#: customer/forms.py:60
+msgid "Yes"
+msgstr "да"
 
 #: customer/models.py:9
 msgid "nick"
@@ -50,7 +50,7 @@ msgstr "Имя"
 
 #: customer/models.py:12
 msgid "city"
-msgstr ""
+msgstr "город"
 
 #: customer/models.py:13
 msgid "address"
@@ -58,13 +58,13 @@ msgstr "Адрес"
 
 #: customer/models.py:14
 msgid "created_at"
-msgstr ""
+msgstr "создан"
 
 #: customer/models.py:15
 msgid "updated_at"
-msgstr ""
+msgstr "обновлен"
 
-#: customer/models.py:24 customer/views.py:51 customer/views.py:59
+#: customer/models.py:24
 msgid "customer"
 msgstr "покупатель"
 
@@ -74,16 +74,19 @@ msgstr "покупатели"
 
 #: customer/templates/customer/list_header.html:9
 msgid "new"
-msgstr ""
+msgstr "новый"
 
-#: customer/views.py:52
-msgid "was created"
-msgstr ""
+#: customer/views.py:51
+#, python-format
+msgid "%(nick)s was created successfully"
+msgstr "%(nick)s создан успешно"
 
-#: customer/views.py:53 customer/views.py:61
-msgid "successfully"
-msgstr ""
+#: customer/views.py:57
+#, python-format
+msgid "%(nick)s was updated successfully"
+msgstr "%(nick)s обновлен успешно"
 
-#: customer/views.py:60
-msgid "was updated"
-msgstr ""
+#: customer/views.py:64
+#, python-format
+msgid "%(nick)s was deleted successfully"
+msgstr "%(nick)s удален успешно"

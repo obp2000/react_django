@@ -18,6 +18,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 # from ajax_select import urls as ajax_select_urls
+import debug_toolbar
 from rest_framework.routers import DefaultRouter
 from city.views import CityViewSet
 from customer.views import CustomerList, CustomerViewSet
@@ -41,6 +42,6 @@ urlpatterns = [
     path('customers/', include('customer.urls')),
     path('products/', include('product.urls')),
     path('orders/', include('order.urls')),
-
+    path('__debug__/', include(debug_toolbar.urls)),
     path('', CustomerList.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

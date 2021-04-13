@@ -15,7 +15,7 @@ from django.http import JsonResponse
 from django_select2.views import AutoResponseView
 
 
-class ProducutAutoResponseView(AutoResponseView):
+class ProductAutoResponseView(AutoResponseView):
 
     def get(self, request, *args, **kwargs):
         """
@@ -44,9 +44,12 @@ class ProducutAutoResponseView(AutoResponseView):
                     {"text": self.widget.label_from_instance(obj),
                      "id": obj.pk,
                      "price": obj.price if hasattr(obj, "price") else None,
-                     "density": obj.density if
-                     hasattr(obj, "density") else None,
-                     "width": obj.width if hasattr(obj, "width") else None}
+                     "one_m_weight": obj.one_m_weight if hasattr(obj, "one_m_weight") else None,
+                     "pindex": obj.city.pindex if hasattr(obj, "city") and hasattr(obj.city, "pindex") else None,
+                     "city": obj.city.city if hasattr(obj, "city") and hasattr(obj.city, "city") else None,
+                     "name": obj.name if hasattr(obj, "name") else None,
+                     "address": obj.address if hasattr(obj, "address") else None,
+                     }
                     for obj in context["object_list"]
                 ],
                 "more": context["page_obj"].has_next(),
@@ -57,6 +60,6 @@ class ProducutAutoResponseView(AutoResponseView):
 app_name = "django_select2"
 
 urlpatterns = [
-    path("fields/auto.json", ProducutAutoResponseView.as_view(),
+    path("fields/auto.json", ProductAutoResponseView.as_view(),
          name="auto-json"),
 ]

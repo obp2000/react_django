@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'jquery',
     'django.contrib.sites',
     'rest_framework',
     'corsheaders',
@@ -62,6 +63,11 @@ INSTALLED_APPS = [
     'user_auth',
     'knox',
     'django_extensions',
+    # 'djangoformsetjs',
+    'dynamic_formsets',
+    'widget_tweaks',
+    'bootstrap_modal_forms',
+    'debug_toolbar',
 ]
 
 REST_FRAMEWORK = {
@@ -86,6 +92,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -217,3 +224,8 @@ CACHES = {
 }
 
 SELECT2_CACHE_BACKEND = "select2"
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+

@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import (CustomerList, CustomerCreate,
-                    CustomerUpdate, CustomerDelete)
+from .views import CustomerList, CustomerCreate, CustomerUpdate, CustomerDelete
 
 urlpatterns = [
     path('new/', CustomerCreate.as_view(), name='customer-new'),

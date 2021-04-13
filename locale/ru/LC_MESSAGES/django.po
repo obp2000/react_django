@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-20 22:54+0300\n"
+"POT-Creation-Date: 2021-03-27 23:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,35 @@ msgstr ""
 msgid "main page"
 msgstr "главная"
 
-#: react_django/settings.py:172
+#: react_django/nav_bar.py:26
+msgid "customers"
+msgstr ""
+
+#: react_django/nav_bar.py:28
+#, fuzzy
+#| msgid "product"
+msgid "products"
+msgstr "ткань"
+
+#: react_django/nav_bar.py:30
+#, fuzzy
+#| msgid "order_item"
+msgid "orders"
+msgstr "позиция заказа"
+
+#: react_django/nav_bar.py:37
+msgid "logout"
+msgstr ""
+
+#: react_django/nav_bar.py:40
+msgid "login"
+msgstr ""
+
+#: react_django/nav_bar.py:47
+msgid "register"
+msgstr ""
+
+#: react_django/settings.py:178
 msgid "Russian"
 msgstr "Русский"
 
@@ -34,11 +62,11 @@ msgstr "Русский"
 #~ msgid "change"
 #~ msgstr "изменить"
 
-msgid "successfully"
-msgstr "успешно"
+#~ msgid "successfully"
+#~ msgstr "успешно"
 
-msgid "%(nick)s was updated successfully"
-msgstr "%(nick)s обновлен успешно"
+#~ msgid "%(nick)s was updated successfully"
+#~ msgstr "%(nick)s обновлен успешно"
 
 #~ msgid "sum"
 #~ msgstr "сумма"
@@ -67,20 +95,14 @@ msgstr "%(nick)s обновлен успешно"
 #~ msgid "edit"
 #~ msgstr "редактировать"
 
-msgid "was updated"
-msgstr "обновлён"
-
-#~ msgid "product"
-#~ msgstr "ткань"
+#~ msgid "was updated"
+#~ msgstr "обновлён"
 
 #~ msgid "amount"
 #~ msgstr "метраж"
 
 #~ msgid "price"
 #~ msgstr "цена"
-
-#~ msgid "order_item"
-#~ msgstr "позиция заказа"
 
 #~ msgid "currency"
 #~ msgstr "руб."
