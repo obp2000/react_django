@@ -22,9 +22,9 @@ from django.utils.translation import gettext_lazy as _
 class MainMenu(NavGroup):
     """Contains the navitems for the site pages."""
     home = ListItem(text=_('main page').title(),
-                    href=reverse_lazy("customer-list"))
+                    href=reverse_lazy("customer:customer-list"))
     customers = ListItem(text=_('customers').title(),
-                         href=reverse_lazy("customer-list"))
+                         href=reverse_lazy("customer:customer-list"))
     products = ListItem(text=_('products').title(),
                         href=reverse_lazy("product-list"))
     orders = ListItem(text=_('orders').title(),
@@ -34,7 +34,7 @@ class MainMenu(NavGroup):
 
     def get_login(self, context: Dict) -> Optional[ListItem]:
         if context.get('request').user.is_authenticated:
-            return ListItem(text=_('logout').title(),
+            return ListItem(text="%s (%s)" % (_('logout').title(), context.get('request').user),
                             href=reverse_lazy("logout"))
         else:
             return ListItem(text=_('login').title(),

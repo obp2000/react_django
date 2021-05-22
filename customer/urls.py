@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import CustomerList, CustomerCreate, CustomerUpdate, CustomerDelete
 
+app_name = 'customer'
+
 urlpatterns = [
     path('new/', CustomerCreate.as_view(), name='customer-new'),
     path('<int:pk>/', CustomerUpdate.as_view(), name='customer-update'),

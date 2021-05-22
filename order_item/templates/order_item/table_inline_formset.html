@@ -82,7 +82,7 @@
                     </td>
                     <td class="form-group text-right pt-2" colspan="2">
                         <span id="post_cost_with_packet">{{ order.post_cost_with_packet }}</span>&nbsp;-
-                        <span id="post_discount">{{ order.post_discount|floatformat:2 }}</span>&nbsp;=
+                        <span id="post_discount">{{ order.post_discount }}</span>&nbsp;=
                     </td>
                     {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.total_postals %}
                     {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.packet_weight %}

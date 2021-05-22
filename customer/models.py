@@ -15,14 +15,16 @@ class Customer(Model):
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('customer-update', kwargs={'pk': self.pk})
+        return reverse('customer:customer-update', kwargs={'pk': self.pk})
 
     class Meta:
-        managed = False
-        db_table = 'customers'
         ordering = ['nick']
         verbose_name = _('customer')
         verbose_name_plural = _('customers')
+        permissions = [
+            ("change_customer_name", "Can change the name of customers"),
+            ("change_customer_city", "Can change the city of customers"),
+        ]
 
     def __str__(self):
-        return f'{self.nick} ({self.name})'
+        return "%s (%s)" % (self.nick, self.name,)

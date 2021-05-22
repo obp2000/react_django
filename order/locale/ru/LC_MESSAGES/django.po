@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 23:07+0300\n"
+"POT-Creation-Date: 2021-05-10 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,115 +20,88 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: order/forms.py:44
-msgid "city"
-msgstr "город"
-
-#: order/forms.py:46 order/models.py:46
-msgid "address"
-msgstr "адрес"
-
-#: order/forms.py:51
-msgid "save"
-msgstr "сохранить"
-
-#: order/forms.py:58
+#: order/forms.py:20
 msgid "pindex"
 msgstr "почтовый индекс"
 
-#: order/forms.py:85
-msgid "search"
-msgstr "поиск"
+#: order/forms.py:22
+msgid "samples"
+msgstr "образцы"
 
-#: order/forms.py:95
-msgid "delete"
-msgstr "удалить"
+#: order/forms.py:49
+msgid "city"
+msgstr "город"
 
-#: order/forms.py:98
-msgid "are you sure you want to delete"
-msgstr "вы уверены, что хотите удалить"
+#: order/forms.py:53 order/models.py:85
+msgid "address"
+msgstr "адрес"
 
-#: order/forms.py:100
-msgid "Yes"
-msgstr "Да"
+#: order/forms.py:60
+msgid "save"
+msgstr "сохранить"
 
-#: order/forms_with_sums.py:14 order/templates/order/order_list_old.html:18
+#: order/forms_with_sums_old.py:14 order/tables.py:9
 msgid "sum"
 msgstr "сумма"
 
-#: order/forms_with_sums.py:17
+#: order/forms_with_sums_old.py:17
 msgid "weight"
 msgstr "вес"
 
-#: order/models.py:20
+#: order/models.py:21
 msgid "(Unknown)"
 msgstr "(Неизвестно)"
 
-#: order/models.py:37 order/templates/order/order_list_old.html:17
+#: order/models.py:77
 msgid "customer"
 msgstr "заказчик"
 
-#: order/models.py:38 order/templates/order/order_list_old.html:19
+#: order/models.py:78
 msgid "created_at"
 msgstr "создан"
 
-#: order/models.py:39 order/templates/order/order_list_old.html:20
+#: order/models.py:79
 msgid "updated_at"
 msgstr "обновлен"
 
-#: order/models.py:40
+#: order/models.py:80
 msgid "post_cost"
 msgstr "почтовые расходы"
 
-#: order/models.py:41
+#: order/models.py:81
 msgid "packet"
 msgstr "почтовый пакет"
 
-#: order/models.py:43
+#: order/models.py:83
 msgid "delivery_type"
 msgstr "способ доставки"
 
-#: order/models.py:47
+#: order/models.py:86
 msgid "gift"
 msgstr "подарок"
 
-#: order/models.py:91
+#: order/models.py:96 order/views.py:100
 msgid "order"
 msgstr "заказ"
 
-#: order/models.py:92 order/templates/order/list_header.html:5
-#: order/templates/order/order_list_old.html:7
+#: order/models.py:97 order/views.py:46
 msgid "orders"
 msgstr "заказы"
 
-#: order/models.py:95
+#: order/models.py:102
 msgid "from"
 msgstr "от"
 
-#: order/templates/order/list_header.html:9
-#: order/templates/order/order_list_old.html:23
-msgid "new"
-msgstr "новый"
-
-#: order/templates/order/order_list_old.html:39
-msgid "edit"
-msgstr "редактировать"
-
-#: order/templates/order/order_list_old.html:44
-msgid "Delete"
-msgstr "Удалить"
-
-#: order/views.py:52
+#: order/views.py:59
 #, python-format
-msgid "№ %(id)s was created successfully"
-msgstr "№ %(id)s создан успешно"
+msgid "order %(customer)s was created successfully"
+msgstr "заказ %(customer)s создан успешно"
 
-#: order/views.py:62
+#: order/views.py:76
 #, python-format
-msgid "№ %(id)s was updated successfully"
-msgstr "№ %(id)s обновлен успешно"
+msgid "order %(customer)s was updated successfully"
+msgstr "заказ %(customer)s обновлен успешно"
 
-#: order/views.py:69
-#, python-format
-msgid "№ %(id)s: %(customer)s was deleted successfully"
-msgstr "№ %(id)s: %(customer)s удален успешно"
+#: order/views.py:100
+msgid "was deleted successfully"
+msgstr "удален успешно"

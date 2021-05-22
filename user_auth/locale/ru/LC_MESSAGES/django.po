@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 23:07+0300\n"
+"POT-Creation-Date: 2021-05-10 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,20 @@ msgstr "изменить"
 msgid "login"
 msgstr "войти"
 
+#: user_auth/templates/user_auth/login.html:7
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access"
+msgstr ""
+"ваша учетная запись не имеет доступа к этой странице. Для продолжения, "
+"пожалуйста, водите с учетной записью, которая имеет доступ"
+
+#: user_auth/templates/user_auth/login.html:9
+msgid "please login to see this page"
+msgstr "пожалуйста, войдите для просмотра этой страницы"
+
 #: user_auth/templates/user_auth/password_change_done.html:4
 #: user_auth/views.py:65 user_auth/views.py:70 user_auth/views.py:77
 #: user_auth/views.py:84 user_auth/views.py:89
 msgid "successfully"
-msgstr ""
+msgstr "успешно"

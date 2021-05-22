@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block content %}
+	<div>
+		<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+	    {% include 'list_header.html' %}
+	    {% if filter %}
+	        {% crispy filter.form filter_helper %}
+	    {% endif %}
+	    <br />
+	    {% render_table table %}
+	    {% include 'delete_modal_container.html' %}
+	    {{ delete_object_form.media.js }}
+	</div>
+{% endblock %}

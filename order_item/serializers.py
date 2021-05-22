@@ -2,8 +2,8 @@
 API Serializers.
 """
 from react_django.utils import WritableNestedModelSerializerMod
-from .models import OrderItem
 from product.serializers import ProductSelectSerializer
+from .models import OrderItem
 
 
 class OrderItemSerializer(WritableNestedModelSerializerMod):

@@ -3,9 +3,9 @@ API Serializers.
 """
 from rest_framework.serializers import IntegerField
 from react_django.utils import WritableNestedModelSerializerMod
-from .models import Order
 from customer.serializers import CustomerSerializer
 from order_item.serializers import OrderItemSerializer
+from .models import Order
 # from delivery_type.models import DeliveryType
 
 

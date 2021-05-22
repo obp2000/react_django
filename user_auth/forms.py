@@ -1,12 +1,12 @@
 from django.forms import EmailField
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import (AuthenticationForm, UserCreationForm,
+                                       PasswordChangeForm)
 from django.utils.translation import gettext_lazy as _
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 # from crispy_forms.bootstrap import UneditableField
 # from .models import Product
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import (AuthenticationForm, UserCreationForm,
-                                       PasswordChangeForm)
 
 
 class LoginForm(AuthenticationForm):

@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from rest_framework.serializers import (ModelSerializer, Serializer,
                                         CharField, ValidationError)
-from django.contrib.auth.models import User
 
 User._meta.get_field('email')._unique = True
 

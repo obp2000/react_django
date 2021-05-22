@@ -1,12 +1,13 @@
-from django_filters import FilterSet, CharFilter
-from .models import Product
+from django_filters import FilterSet, CharFilter, ChoiceFilter
+from django.utils.translation import gettext_lazy as _
+from .models import Product, Contents
 
 
 class ProductFilter(FilterSet):
+    product_type__name = CharFilter(lookup_expr='icontains')
+    contents = ChoiceFilter(choices=Contents.choices, empty_label=_('contents').capitalize())
     name = CharFilter(lookup_expr='icontains')
-    # nick = CharFilter(lookup_expr='icontains')
-    # city__city = CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Product
-        fields = ['name']
+        fields = ['product_type__name', 'contents', 'name']

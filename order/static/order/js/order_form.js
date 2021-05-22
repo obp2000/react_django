@@ -220,7 +220,7 @@ $.fn.current_order_item_row = function() {
 	return $(this).closest('tr')
 }
 
-var postcalc_url = "http://test.postcalc.ru"
+var postcalc_url = "http://api2.postcalc.ru"
 
 var postcalc_params = () => ({
 	f: '153038',
@@ -229,16 +229,10 @@ var postcalc_params = () => ({
 	ml: 'obp2000@mail.ru',
 	key: 'test',
 	t: $(tags.customer.pindex).val(),
-	w: $(tags.order.weight).val()
+	w: $(tags.order.weight).val(),
+	v: 0,
+	p: 'pv'
 })
-
-var set_post_cost = ({
-	Отправления: {
-		ЦеннаяПосылка: {
-			Тариф
-		}
-	}
-}) => $(tags.post.cost).val(Тариф).change()
 
 const on_customer_change = ({
 	params: {
@@ -306,13 +300,43 @@ const on_post_cost_change = function() {
 	})
 }
 
+var set_post_cost1 = function(jqXHR, textStatus, errorThrown) {
+	alert(textStatus)
+}
+
+var set_post_cost2 = function(xhr, status) {
+	// if (!xhr.responseText) {
+
+	// }
+	// else {
+	var data = xhr.responseText;
+	console.log("response: ", xhr)
+	// }
+}
+
+var set_post_cost3 = function(data) {
+	// data1 = JSON.parse(data);
+	alert('sssssss')
+}
+
+var set_post_cost = ({
+	Отправления: {
+		ЦеннаяПосылка: {
+			Тариф
+		}
+	}
+}) => $(tags.post.cost).val(Тариф).change()
+
+
 const count_post_cost = function() {
 	$.ajax({
 		url: postcalc_url,
-		jsonp: "callback",
+		// jsonp: "callback",
 		dataType: "jsonp",
 		data: postcalc_params(),
-		success: set_post_cost
+		success: set_post_cost,
+		// error: set_post_cost2,
+		// complete: set_post_cost2
 	})
 }
 

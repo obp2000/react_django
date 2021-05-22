@@ -9,4 +9,11 @@ class CustomerFilter(FilterSet):
 
     class Meta:
         model = Customer
-        fields = ['nick', 'name']
+        fields = ['nick', 'name', 'city__city']
+
+
+        # fields = {
+        #     'nick': ['exact', 'icontains'],
+        #     'name': ['exact', 'icontains'],
+        #     'city__city': ['exact', 'icontains'],
+        # }

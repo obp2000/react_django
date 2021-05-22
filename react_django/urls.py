@@ -39,9 +39,12 @@ urlpatterns = [
     path('auth/', include('user_auth.token_urls')),
     path('', include('user_auth.urls')),
     path('admin/', admin.site.urls),
-    path('customers/', include('customer.urls')),
+    path('customers/', include('customer.urls', namespace='customer')),
     path('products/', include('product.urls')),
     path('orders/', include('order.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', CustomerList.as_view()),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

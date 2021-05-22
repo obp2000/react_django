@@ -11,29 +11,37 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 from os.path import dirname, abspath, join
+from os import environ
 from django.conf.locale.ru import formats as ru_formats
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sisb5l$#kqbf%e%p9&41fsp!wo1gz37s$vjv8x(a3rm)cdr9m6'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = environ.get("SECRET_KEY", 'sisb5l$#kqbf%e%p9&41fsp!wo1gz37s$vjv8x(a3rm)cdr9m6')
 
-ALLOWED_HOSTS = []
+DEBUG = int(environ.get("DEBUG", True))
+
+ALLOWED_HOSTS = environ.get("DJANGO_ALLOWED_HOSTS", 'localhost 127.0.0.1').split(" ")
+
+# SECRET_KEY = 'sisb5l$#kqbf%e%p9&41fsp!wo1gz37s$vjv8x(a3rm)cdr9m6'
+
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+
+# ALLOWED_HOSTS = []
 
 # APPEND_SLASH=False
 
 # Application definition
 
 INSTALLED_APPS = [
+    'user_auth',
     'test_without_migrations',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'corsheaders',
-    'ajax_select',
     'crispy_forms',
     'extra_views',
     'django_tables2',
@@ -54,13 +61,12 @@ INSTALLED_APPS = [
     'bootstrap_navbar',
     'django_select2',
     'react_django',
-    'city',
+    'city.apps.CityConfig',
     'customer',
     'product',
     'delivery_type',
     'order_item',
     'order',
-    'user_auth',
     'knox',
     'django_extensions',
     # 'djangoformsetjs',
@@ -86,9 +92,9 @@ REST_FRAMEWORK = {
     'SEARCH_PARAM': 'term',
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
     # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
+    #     'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'knox.auth.TokenAuthentication',
+    # ),
 }
 
 MIDDLEWARE = [
@@ -130,14 +136,25 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'angular2-example_development',
+#         'USER': 'postgres',
+#         'PASSWORD': '1',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'angular2-example_development',
-        'USER': 'postgres',
-        'PASSWORD': '1',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": environ.get("SQL_ENGINE", "django.db.backends.postgresql"),
+        "NAME": environ.get("SQL_DATABASE", "angular2-example_development"),
+        "USER": environ.get("SQL_USER", "postgres"),
+        "PASSWORD": environ.get("SQL_PASSWORD", "1"),
+        "HOST": environ.get("SQL_HOST", "127.0.0.1"),
+        "PORT": environ.get("SQL_PORT", "5432"),
     }
 }
 
@@ -183,7 +200,7 @@ LANGUAGES = [
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
-# USE_TZ = True
+USE_TZ = True
 
 ru_formats.DATE_FORMAT = 'd.m.Y'
 ru_formats.TIME_FORMAT = 'H:i'
@@ -216,7 +233,8 @@ CACHES = {
     },
     "select2": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/2",
+        # "LOCATION": "redis://127.0.0.1:6379/2",
+        "LOCATION": "redis://%s:6379/2" % environ.get("REDIS_HOST", "127.0.0.1"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -229,3 +247,4 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

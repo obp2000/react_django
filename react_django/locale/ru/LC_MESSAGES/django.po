@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-10 22:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+#: react_django/forms.py:27
+msgid "are you sure you want to delete"
+msgstr ""
+
+#: react_django/forms.py:31
+msgid "Yes"
+msgstr "Да"
+
+#: react_django/forms.py:52
+msgid "search"
+msgstr "поиск"
+
+#: react_django/forms.py:55
+msgid "reset"
+msgstr "сбросить"
+
+#: react_django/nav_bar.py:24
+msgid "main page"
+msgstr "главная"
+
+#: react_django/nav_bar.py:26
+msgid "customers"
+msgstr "покупатели"
+
+#: react_django/nav_bar.py:28
+msgid "products"
+msgstr "ткани"
+
+#: react_django/nav_bar.py:30
+msgid "orders"
+msgstr "заказы"
+
+#: react_django/nav_bar.py:37
+msgid "logout"
+msgstr "выйти"
+
+#: react_django/nav_bar.py:40
+msgid "login"
+msgstr "войти"
+
+#: react_django/nav_bar.py:47
+msgid "register"
+msgstr "регистрация"
+
+#: react_django/settings.py:198
+msgid "Russian"
+msgstr "Русский"
+
+#: react_django/templates/list_header.html:10
+msgid "new"
+msgstr "новый"

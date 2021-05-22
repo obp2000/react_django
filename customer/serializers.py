@@ -26,7 +26,7 @@ class CustomerSelectSerializer(ModelSerializer):
     Customer serializer for select field.
     """
     city = CitySerializer()
-    
+
     class Meta:
         """
         Set Customer serializer.

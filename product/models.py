@@ -1,7 +1,60 @@
 from django.db.models import Model, CharField, IntegerField, \
-     PositiveIntegerField, DateTimeField, DecimalField, ImageField
+     PositiveIntegerField, DateTimeField, DecimalField, ForeignKey, \
+     SET_NULL, ImageField, QuerySet, ExpressionWrapper, F, \
+     Case, When, IntegerChoices, ManyToManyField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+
+class ProductType(Model):
+    name = CharField(_('name'), max_length=255)
+    created_at = DateTimeField(_('created_at'), auto_now_add=True)
+    updated_at = DateTimeField(_('updated_at'), auto_now=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = _('type')
+        verbose_name_plural = _('types')
+
+    def __str__(self):
+        return self.name
+
+
+class Threads(IntegerChoices):
+    TWO_THREADS = 1, _('two threads')
+    THREE_THREADS = 2, _('three threads')
+    __empty__ = _('(Unknown)')
+
+
+class Contents(IntegerChoices):
+    LYCRA = 1, _('with lycra')
+    COTTON = 2, _('100% cotton')
+    __empty__ = _('(Unknown)')
+
+
+class ProductQuerySet(QuerySet):
+    one_m_weight = ExpressionWrapper(F('density') * F('width') / 100,
+                                     output_field=IntegerField())
+
+    price_rub_m = ExpressionWrapper(F('dollar_price') * F('dollar_rate') * F('one_m_weight') / 1000,
+                                    output_field=IntegerField())
+
+
+    density_for_count = Case(When(length_for_count__gt=0, width__gt=0,
+                                  then=F('weight_for_count') / F('length_for_count') /
+                                  F('width') * 100),
+                             output_field=IntegerField())
+
+    meters_in_roll = Case(When(one_m_weight__gt=0,
+                               then=F('weight') * 1000 / F('one_m_weight')),
+                          output_field=DecimalField(decimal_places=2))
+
+    def details(self):
+        return self.select_related("product_type").annotate(
+            one_m_weight=self.one_m_weight,
+            price_rub_m=self.price_rub_m,
+            density_for_count=self.density_for_count,
+            meters_in_roll=self.meters_in_roll)
 
 
 def product_images_path(instance, filename):
@@ -10,6 +63,10 @@ def product_images_path(instance, filename):
 
 class Product(Model):
     name = CharField(_('name'), max_length=255)
+    product_type = ForeignKey(ProductType, SET_NULL, blank=True, null=True,
+                              verbose_name=_('product_type'))
+    threads = PositiveIntegerField(_('threads'), choices=Threads.choices, blank=True, null=True)
+    contents = PositiveIntegerField(_('contents'), choices=Contents.choices, blank=True, null=True)
     price = IntegerField(_('price'))
     weight = DecimalField(_('weight'), max_digits=4, decimal_places=2,
                           blank=True, null=True)
@@ -31,41 +88,22 @@ class Product(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    @property
-    def one_m_weight(self):
-        return (self.density or 0) * (self.width or 0) / 100
-    
-    @property
-    def price_rub_m(self):
-        return (self.dollar_price or 0) * (self.dollar_rate or 0) * \
-               (self.density or 0) * (self.width or 0) / 100000
-    # price_rub_m.blank = True
-    # price_rub_m.verbose_name = _('sum555')
-    # price_rub_m = property(price_rub_m)
+    products = ProductQuerySet.as_manager()
 
-    @property
-    def density_for_count(self):
-        if (self.weight_for_count or 0) > 0 and (self.length_for_count or 0) > 0 and (self.width or 0) > 0:
-            return self.weight_for_count / self.length_for_count / self.width * 100
-        else:
-            return 0
+    def threads_display(self):
+        return self.get_threads_display() if self.threads else ''
 
-    @property        
-    def meters_in_roll(self):
-        if (self.weight or 0) > 0 and (self.density or 0) > 0 and (self.width or 0) > 0: 
-            return self.weight * 100000 / self.density / self.width
-        else:
-            return 0
+    def contents_display(self):
+        return self.get_contents_display() if self.contents else ''
 
     def get_absolute_url(self):
         return reverse('product-update', kwargs={'pk': self.pk})
 
     class Meta:
-        managed = False
-        db_table = 'products'
         ordering = ['name']
         verbose_name = _('product')
         verbose_name_plural = _('products')
 
     def __str__(self):
-        return self.name
+        return " ".join([str(self.product_type), self.threads_display(), self.contents_display(), \
+                         self.name,])

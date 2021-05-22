@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 23:07+0300\n"
+"POT-Creation-Date: 2021-05-10 22:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,29 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: react_django/forms.py:27
+msgid "are you sure you want to delete"
+msgstr "вы уверены, что хотите удалить"
+
+#: react_django/forms.py:31
+msgid "Yes"
+msgstr "Да"
+
+#: react_django/forms.py:52
+msgid "search"
+msgstr "поиск"
+
+#: react_django/forms.py:55
+msgid "reset"
+msgstr "сбросить"
+
 #: react_django/nav_bar.py:24
 msgid "main page"
 msgstr "главная"
 
 #: react_django/nav_bar.py:26
 msgid "customers"
-msgstr ""
+msgstr "покупатели"
 
 #: react_django/nav_bar.py:28
 #, fuzzy
@@ -42,82 +58,20 @@ msgstr "позиция заказа"
 
 #: react_django/nav_bar.py:37
 msgid "logout"
-msgstr ""
+msgstr "выйти"
 
 #: react_django/nav_bar.py:40
 msgid "login"
-msgstr ""
+msgstr "войти"
 
 #: react_django/nav_bar.py:47
 msgid "register"
-msgstr ""
+msgstr "регистрация"
 
-#: react_django/settings.py:178
+#: react_django/settings.py:198
 msgid "Russian"
 msgstr "Русский"
 
-#~ msgid "enter"
-#~ msgstr "вход"
-
-#~ msgid "change"
-#~ msgstr "изменить"
-
-#~ msgid "successfully"
-#~ msgstr "успешно"
-
-#~ msgid "%(nick)s was updated successfully"
-#~ msgstr "%(nick)s обновлен успешно"
-
-#~ msgid "sum"
-#~ msgstr "сумма"
-
-#~ msgid "weight"
-#~ msgstr "вес"
-
-#~ msgid "created_at"
-#~ msgstr "создан"
-
-#~ msgid "updated_at"
-#~ msgstr "обновлен"
-
-#~ msgid "delivery_type"
-#~ msgstr "Доставка"
-
-#~ msgid "address"
-#~ msgstr "адрес"
-
-#~ msgid "save"
-#~ msgstr "сохранить"
-
-#~ msgid "new"
-#~ msgstr "новый"
-
-#~ msgid "edit"
-#~ msgstr "редактировать"
-
-#~ msgid "was updated"
-#~ msgstr "обновлён"
-
-#~ msgid "amount"
-#~ msgstr "метраж"
-
-#~ msgid "price"
-#~ msgstr "цена"
-
-#~ msgid "currency"
-#~ msgstr "руб."
-
-#~ msgid "santimeters"
-#~ msgstr "см"
-
-#~ msgid "search"
-#~ msgstr "поиск"
-
-#~ msgid "was created"
-#~ msgstr "создан"
-
-#~ msgid ""
-#~ "Your password can’t be too similar to your other personal information"
-#~ msgstr ""
-#~ "Ваш пароль не должен быть слишком похож на другую вашу персональную "
-#~ "информацию"
+#: react_django/templates/list_header.html:10
+msgid "new"
+msgstr "новый"

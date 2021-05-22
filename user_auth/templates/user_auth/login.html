@@ -2,5 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+	{% if next %}
+		{% if user.is_authenticated %}
+			<p>{{_("Your account doesn't have access to this page. To proceed, please login with an account that has access")|capfirst}}.</p>
+		{% else %}
+			<p>{{_('please login to see this page')|capfirst }}.</p>
+		{% endif %}
+	{% endif %}
 	{% crispy form %}
 {% endblock %}

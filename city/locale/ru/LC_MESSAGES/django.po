@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 23:07+0300\n"
+"POT-Creation-Date: 2021-05-10 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,10 +29,10 @@ msgctxt "city name"
 msgid "name"
 msgstr "название"
 
-#: city/models.py:14
+#: city/models.py:12
 msgid "city"
 msgstr "Город"
 
-#: city/models.py:15
+#: city/models.py:13
 msgid "cities"
 msgstr "Города"

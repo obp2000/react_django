@@ -8,11 +8,12 @@ class City(Model):
     city = CharField(pgettext_lazy('city name', 'name'), unique=True, max_length=80)
 
     class Meta:
-        managed = False
-        db_table = 'cities'
         ordering = ['city']
         verbose_name = _('city')
         verbose_name_plural = _('cities')
+        # indexes = [
+        #     Index(fields=['city',]),
+        # ]
 
     def __str__(self):
         return self.city

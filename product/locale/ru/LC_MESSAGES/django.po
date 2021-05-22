@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 23:07+0300\n"
+"POT-Creation-Date: 2021-05-10 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,127 +20,142 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: product/forms.py:66
-msgid "save"
-msgstr "сохранить"
+#: product/filters.py:8 product/models.py:69
+msgid "contents"
+msgstr "состав"
 
-#: product/forms.py:70
+#: product/forms.py:14
 msgid "meter price"
 msgstr "цена метра"
 
-#: product/forms.py:71
+#: product/forms.py:15
 msgid "density for count"
 msgstr "плотность для расчета"
 
-#: product/forms.py:72
+#: product/forms.py:16
 msgid "meters in roll"
 msgstr "метров в рулоне"
 
-#: product/forms.py:91
-msgid "search"
-msgstr "поиск"
+#: product/forms.py:87
+msgid "save"
+msgstr "сохранить"
 
-#: product/forms.py:101
-msgid "delete"
-msgstr "удалить"
-
-#: product/forms.py:104
-msgid "are you sure you want to delete"
-msgstr "вы уверены, что хотите удалить"
-
-#: product/forms.py:106
-msgid "Yes"
-msgstr "Да"
-
-#: product/models.py:12
+#: product/models.py:10 product/models.py:65
 msgid "name"
 msgstr "Наименование"
 
-#: product/models.py:13
-msgid "price"
-msgstr "Цена"
-
-#: product/models.py:14
-msgid "weight"
-msgstr "вес"
-
-#: product/models.py:16
-msgid "width"
-msgstr "ширина"
-
-#: product/models.py:17
-msgid "density"
-msgstr "плотность"
-
-#: product/models.py:18
-msgid "dollar_price"
-msgstr "цена, $/кг"
-
-#: product/models.py:20
-msgid "dollar_rate"
-msgstr "курс $"
-
-#: product/models.py:22
-msgid "width_shop"
-msgstr "ширина для витрины"
-
-#: product/models.py:23
-msgid "density_shop"
-msgstr "плотность для витрины"
-
-#: product/models.py:25
-msgid "weight_for_count"
-msgstr "вес отреза, гр."
-
-#: product/models.py:27
-msgid "length_for_count"
-msgstr "длина отреза, м"
-
-#: product/models.py:29
-msgid "price_pre"
-msgstr "цена до выкупа, руб./м"
-
-#: product/models.py:30
-msgid "image"
-msgstr "фото"
-
-#: product/models.py:31
+#: product/models.py:11 product/models.py:88
 msgid "created_at"
 msgstr "создана"
 
-#: product/models.py:32
+#: product/models.py:12 product/models.py:89
 msgid "updated_at"
 msgstr "обновлена"
 
+#: product/models.py:16
+msgid "type"
+msgstr "тип"
+
+#: product/models.py:17
+msgid "types"
+msgstr "типы"
+
+#: product/models.py:24
+msgid "two threads"
+msgstr "двухнитка"
+
+#: product/models.py:25
+msgid "three threads"
+msgstr "трёхнитка"
+
+#: product/models.py:26 product/models.py:32
+msgid "(Unknown)"
+msgstr "(Неизвестно)"
+
+#: product/models.py:30
+msgid "with lycra"
+msgstr "с лайкрой"
+
+#: product/models.py:31
+#, fuzzy, python-format
+#| msgid "100% cotton"
+msgid "100% cotton"
+msgstr "100% хлопок"
+
 #: product/models.py:67
+msgid "product_type"
+msgstr "тип ткани"
+
+#: product/models.py:68
+msgid "threads"
+msgstr "нитей"
+
+#: product/models.py:70
+msgid "price"
+msgstr "Цена"
+
+#: product/models.py:71
+msgid "weight"
+msgstr "вес"
+
+#: product/models.py:73
+msgid "width"
+msgstr "ширина"
+
+#: product/models.py:74
+msgid "density"
+msgstr "плотность"
+
+#: product/models.py:75
+msgid "dollar_price"
+msgstr "цена, $/кг"
+
+#: product/models.py:77
+msgid "dollar_rate"
+msgstr "курс $"
+
+#: product/models.py:79
+msgid "width_shop"
+msgstr "ширина для витрины"
+
+#: product/models.py:80
+msgid "density_shop"
+msgstr "плотность для витрины"
+
+#: product/models.py:82
+msgid "weight_for_count"
+msgstr "вес отреза, гр."
+
+#: product/models.py:84
+msgid "length_for_count"
+msgstr "длина отреза, м"
+
+#: product/models.py:86
+msgid "price_pre"
+msgstr "цена до выкупа, руб./м"
+
+#: product/models.py:87
+msgid "image"
+msgstr "фото"
+
+#: product/models.py:104 product/views.py:81
 msgid "product"
 msgstr "ткань"
 
-#: product/models.py:68 product/templates/product/list_header.html:5
+#: product/models.py:105 product/views.py:43
 msgid "products"
 msgstr "ткани"
 
-#: product/templates/product/list_header.html:9
-msgid "new"
-msgstr "новая"
-
-#: product/views.py:46
+#: product/views.py:54
 #, python-format
 msgid "%(name)s was created successfully"
 msgstr "%(name)s создана успешно"
 
-#: product/views.py:52
+#: product/views.py:63
 #, python-format
 msgid "%(name)s was updated successfully"
 msgstr "%(name)s обновлена успешно"
 
-#: product/views.py:59
-#, python-format
-msgid "%(name)s was deleted successfully"
-msgstr "%(name)s удалена успешно"
-
-#~ msgid "currency"
-#~ msgstr "руб."
-
-#~ msgid "santimeters"
-#~ msgstr "см"
+#: product/views.py:81
+msgid "was deleted successfully"
+msgstr "удалена успешно"
