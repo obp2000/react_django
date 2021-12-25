@@ -1,23 +1,9 @@
-from rest_framework import pagination
-from rest_framework.response import Response
-from django.test.runner import DiscoverRunner
-from drf_writable_nested.serializers import WritableNestedModelSerializer
-
 from urllib.parse import urlparse
+
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import resolve_url
-from django.forms import CharField
-
-class PageNumberPaginationWithNumPages(pagination.PageNumberPagination):
-    page_size_query_param = 'page_size'
-
-    def get_paginated_response(self, data):
-        return Response({
-            'totalCount': self.page.paginator.count,
-            'totalPages': self.page.paginator.num_pages,
-            'results': data
-        })
+from django.test.runner import DiscoverRunner
 
 
 class UnManagedModelTestRunner(DiscoverRunner):
@@ -35,17 +21,6 @@ class UnManagedModelTestRunner(DiscoverRunner):
         super().teardown_test_environment(*args, **kwargs)
         for m in self.unmanaged_models:
             m._meta.managed = False
-
-
-class WritableNestedModelSerializerMod(WritableNestedModelSerializer):
-    """
-    Writable Nested Model Serializer modified.
-    """
-
-    def to_internal_value(self, data):
-        data.pop('created_at', None)
-        data.pop('_destroy', None)
-        return data
 
 
 class AccessMixin:

@@ -13,17 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.conf import settings
-from django.conf.urls.static import static
 # from ajax_select import urls as ajax_select_urls
 import debug_toolbar
+from customer.api.views import CityViewSet, CustomerViewSet
+from customer.views import CustomerList
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from order.api.views import OrderViewSet
+from product.api.views import ProductViewSet
 from rest_framework.routers import DefaultRouter
-from city.views import CityViewSet
-from customer.views import CustomerList, CustomerViewSet
-from product.views import ProductViewSet
-from order.views import OrderViewSet
 
 router = DefaultRouter()
 router.register(r'cities', CityViewSet)
@@ -33,10 +33,10 @@ router.register(r'orders', OrderViewSet)
 
 urlpatterns = [
     path('api/', include((router.urls, 'api'))),
-    path('api/', include('delivery_type.urls')),
+    path('api/', include('order.api.urls')),
     # path('ajax_select/', include(ajax_select_urls)),
     path("select2/", include("react_django.select2")),
-    path('auth/', include('user_auth.token_urls')),
+    path('auth/', include('user_auth.api.urls')),
     path('', include('user_auth.urls')),
     path('admin/', admin.site.urls),
     path('customers/', include('customer.urls', namespace='customer')),
@@ -47,4 +47,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

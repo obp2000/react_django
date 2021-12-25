@@ -1,7 +1,11 @@
-from django.contrib import admin
-from ajax_select.admin import AjaxSelectAdmin
 from ajax_select import make_ajax_form
-from .models import Customer
+from ajax_select.admin import AjaxSelectAdmin
+from django.contrib import admin
+
+from .models import City, Customer
+
+admin.site.register(City)
+
 # from .forms import CustomerForm
 
 # admin.site.register(Customer)
@@ -10,10 +14,13 @@ from .models import Customer
 @admin.register(Customer)
 class CustomerAdmin(AjaxSelectAdmin):
 
-    form = make_ajax_form(Customer, {
-        # fieldname: channel_name
-        'city': 'city'
-    })
+    form = make_ajax_form(
+        Customer,
+        {
+            # fieldname: channel_name
+            'city': 'city'
+        })
+
 
 # @admin.register(Customer)
 # class CustomerAdmin(AjaxSelectAdmin):

@@ -1,7 +1,7 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, HTML, Div, Reset
+from crispy_forms.layout import HTML, Div, Layout, Reset, Submit
+from django.forms import CharField, Form
 from django.utils.translation import gettext_lazy as _
-from django.forms import Form, CharField
 
 
 class CharFieldDisabled(CharField):
@@ -14,7 +14,7 @@ class CharFieldDisabled(CharField):
 class DeleteObjectForm(Form):
 
     class Media:
-        js = ('react_django/js/delete_object_form.js',)
+        js = ('js/delete_object_form.js',)
 
 
 class DeleteFormHelper(FormHelper):
@@ -23,12 +23,14 @@ class DeleteFormHelper(FormHelper):
         super().__init__(*args, **kwargs)
         self.include_media = False
         self.layout = Layout(
-            Div(HTML("<h5 class='modal-title'>%s?</h5>" %  \
-                    _('are you sure you want to delete').capitalize()),
-                Reset('dismiss', '&times;', css_class="btn-close", data_dismiss="modal",
-                      aria_label="Close"), css_class="modal-header"),
+            Div(HTML("<h5 class='modal-title'>%s?</h5>" %
+                     _('are you sure you want to delete').capitalize()),
+                Reset('dismiss', '&times;', css_class="btn-close",
+                      data_dismiss="modal", aria_label="Close"),
+                css_class="modal-header"),
             Div(HTML("<h5>{{ object }}</h5>"), css_class="modal-body"),
-            Div(Submit('delete', _('Yes'), css_class="btn-danger"), css_class="modal-footer")
+            Div(Submit('delete', _('Yes'), css_class="btn-danger"),
+                css_class="modal-footer")
         )
 
 # ResetFilterButton = HTML("{% load bootstrap4 %} {% load i18n %} \
@@ -51,6 +53,7 @@ class FilterFormHelper(FormHelper):
             *filter_fields,
             Submit('search', _('search').title()),
             HTML("&nbsp;"),
-            HTML("{% load bootstrap4 %} {% bootstrap_button '" + 
-                _('reset').capitalize() + "' button_type='link' href=list_url %}")
+            HTML("{% load bootstrap4 %} {% bootstrap_button '" +
+                 _('reset').capitalize() +
+                 "' button_type='link' href=list_url %}")
         )

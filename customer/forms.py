@@ -1,9 +1,10 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import HTML, Layout, Submit
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, HTML
 from django_select2.forms import ModelSelect2Widget
 from react_django.forms import CharFieldDisabled
+
 from .models import Customer
 
 
@@ -12,37 +13,29 @@ class CityWidget(ModelSelect2Widget):
 
 
 class CustomerForm(ModelForm):
-
     class Meta:
         model = Customer
-        # fields = '__all__'
         fields = ["nick", "name", "city", "address"]
-        widgets = {
-            "city": CityWidget
-        }
+        widgets = {"city": CityWidget}
 
 
 class CustomerFormWitDisabledName(CustomerForm):
-
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
         if instance and instance.id:
-            kwargs['initial'] = {
-                'name_disabled': instance.name
-            }
+            kwargs['initial'] = {'name_disabled': instance.name}
         super().__init__(*args, **kwargs)
 
-    name_disabled = CharFieldDisabled(label=_('name').capitalize())
+    name_disabled = CharFieldDisabled(label=_('name'))
 
     class Meta(CustomerForm.Meta):
         # print(CustomerForm.Meta.fields)
         # fields = ["nick", "name_disabled", "city", "address"]
-        CustomerForm.Meta.fields.remove('name')
+        # CustomerForm.Meta.fields.remove('name')
         fields = CustomerForm.Meta.fields
 
 
 class CustomerFormHelper(FormHelper):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.form_class = 'form-horizontal'

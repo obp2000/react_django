@@ -34,7 +34,8 @@ class MainMenu(NavGroup):
 
     def get_login(self, context: Dict) -> Optional[ListItem]:
         if context.get('request').user.is_authenticated:
-            return ListItem(text="%s (%s)" % (_('logout').title(), context.get('request').user),
+            return ListItem(text="%s (%s)" %
+                            (_('logout').title(), context.get('request').user),
                             href=reverse_lazy("logout"))
         else:
             return ListItem(text=_('login').title(),
@@ -51,36 +52,6 @@ class MainMenu(NavGroup):
         navitems = ("home", "customers", "products", "orders", "login",
                     "register")
         class_list = ["mr-auto"]
-
-
-# class LeftMenu(NavGroup):
-#     """Contains the navitems for the site pages."""
-
-#     user = ListItem(text="No Link")
-#     home = ListItem(
-#         text="Home", href=Href(url=reverse_lazy("home"), query_params={"field": 100})
-#     )
-#     blog = ListItem(text="Blog", href=reverse_lazy("blog"))
-#     pages = DropDown(
-#         text="Pages",
-#         children=[
-#             Link(text="Home", href=reverse_lazy("example-home")),
-#             Link(text="Blog", href=reverse_lazy("example-blog")),
-#         ],
-#         menu_class_list=["custom-class"],
-#         menu_attrs={"data-name": "pages-dropdown"},
-#     )
-#     documentation = LazyAttribute(method="get_documentation")
-
-#     class Meta:
-#         navitems = ("home", "blog", "user", "pages", "documentation")
-#         class_list = ["mr-auto"]
-
-#     def get_documentation(self, context: Dict) -> Optional[ListItem]:
-#         if not random.choice([True, False]):
-#             return None
-
-#         return ListItem(text="Documentation", href=reverse_lazy("blog"))
 
 
 class MainNavBar(NavBar):

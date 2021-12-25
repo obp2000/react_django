@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-10 22:37+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2021-05-30 22:12+0300\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: product/filters.py:8 product/models.py:69
 msgid "contents"
@@ -42,7 +42,7 @@ msgstr "сохранить"
 
 #: product/models.py:10 product/models.py:65
 msgid "name"
-msgstr "Наименование"
+msgstr "наименование"
 
 #: product/models.py:11 product/models.py:88
 msgid "created_at"
@@ -92,7 +92,7 @@ msgstr "нитей"
 
 #: product/models.py:70
 msgid "price"
-msgstr "Цена"
+msgstr "цена"
 
 #: product/models.py:71
 msgid "weight"
@@ -124,7 +124,7 @@ msgstr "плотность для витрины"
 
 #: product/models.py:82
 msgid "weight_for_count"
-msgstr "вес отреза, гр."
+msgstr "вес отреза, гр"
 
 #: product/models.py:84
 msgid "length_for_count"

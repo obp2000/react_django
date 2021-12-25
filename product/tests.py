@@ -1,33 +1,29 @@
-from rest_framework.test import APITestCase, override_settings
+import tempfile
+from collections import ChainMap
+
 # from unittest.mock import patch
 from django.conf import settings
 from django.test import modify_settings
-from collections import ChainMap
-# from rest_framework.test import override_settings, modify_settings
-from rest_framework.routers import DefaultRouter
-from rest_framework import status
 from django.urls import reverse
 from PIL import Image
-import tempfile
+from rest_framework import status
+# from rest_framework.test import override_settings, modify_settings
+from rest_framework.routers import DefaultRouter
+from rest_framework.test import APITestCase, override_settings
 
 from .models import Product
 from .views import ProductViewSet
 
 rest1 = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
     'DEFAULT_PAGINATION_CLASS':
-        'react_django.utils.PageNumberPaginationWithNumPages',
-        'PAGE_SIZE': 2,
-        'DEFAULT_FILTER_BACKENDS':
-        ['rest_framework.filters.SearchFilter'],
-        'SEARCH_PARAM': 'term',
-        'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
-        # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
+    'react_django.utils.PageNumberPaginationWithNumPages',
+    'PAGE_SIZE': 2,
+    'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
+    'SEARCH_PARAM': 'term',
+    'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
+    # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
 }
 
 
@@ -58,7 +54,7 @@ class ProductAPITestCase(APITestCase):
     #                                            settings.REST_FRAMEWORK))
     # @override_settings(REST_FRAMEWORK=rest1)
     page_size = {'PAGE_SIZE': 2}
-    
+
     @modify_settings(REST_FRAMEWORK={
         'remove': 'PAGE_SIZE',
         'append': page_size
@@ -199,7 +195,8 @@ class ProductAPITestCase(APITestCase):
         self.assertEqual(results[0]['name'], self.product2.name)
         self.assertEqual(results[0]['price'], self.product2.price)
 
-    @override_settings(REST_FRAMEWORK=ChainMap({'PAGE_SIZE': 2}, settings.REST_FRAMEWORK))
+    @override_settings(REST_FRAMEWORK=ChainMap({'PAGE_SIZE': 2},
+                                               settings.REST_FRAMEWORK))
     def test_paginated_list_products(self):
         """
         Test that we can get a certian page of products

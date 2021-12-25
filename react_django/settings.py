@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-from os.path import dirname, abspath, join
-from os import environ
+from os.path import abspath, dirname, join
+
+# from os import environ
+from decouple import Csv, config
 from django.conf.locale.ru import formats as ru_formats
 from django.utils.translation import gettext_lazy as _
 
@@ -23,18 +25,10 @@ BASE_DIR = dirname(dirname(abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = environ.get("SECRET_KEY", 'sisb5l$#kqbf%e%p9&41fsp!wo1gz37s$vjv8x(a3rm)cdr9m6')
+DEBUG = config("DEBUG")
+SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = int(environ.get("DEBUG", True))
-
-ALLOWED_HOSTS = environ.get("DJANGO_ALLOWED_HOSTS", 'localhost 127.0.0.1').split(" ")
-
-# SECRET_KEY = 'sisb5l$#kqbf%e%p9&41fsp!wo1gz37s$vjv8x(a3rm)cdr9m6'
-
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=Csv())
 
 # APPEND_SLASH=False
 
@@ -61,10 +55,10 @@ INSTALLED_APPS = [
     'bootstrap_navbar',
     'django_select2',
     'react_django',
-    'city.apps.CityConfig',
+    # 'city.apps.CityConfig',
     'customer',
     'product',
-    'delivery_type',
+    # 'delivery_type',
     'order_item',
     'order',
     'knox',
@@ -80,15 +74,12 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.AllowAny',
     # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
     'DEFAULT_PAGINATION_CLASS':
-        # 'react_django_api.apps.PageNumberPaginationWithNumPages',
-        'react_django.utils.PageNumberPaginationWithNumPages',
+    # 'react_django_api.apps.PageNumberPaginationWithNumPages',
+    'react_django.api.pagination.PageNumberPaginationWithNumPages',
     'PAGE_SIZE': 3,
-    'DEFAULT_FILTER_BACKENDS':
-        ['rest_framework.filters.SearchFilter'],
+    'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
     'SEARCH_PARAM': 'term',
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
     # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
@@ -119,7 +110,7 @@ BOOTSTRAP_NAVBAR = "react_django.nav_bar:MainNavBar"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -149,12 +140,12 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": environ.get("SQL_ENGINE", "django.db.backends.postgresql"),
-        "NAME": environ.get("SQL_DATABASE", "angular2-example_development"),
-        "USER": environ.get("SQL_USER", "postgres"),
-        "PASSWORD": environ.get("SQL_PASSWORD", "1"),
-        "HOST": environ.get("SQL_HOST", "127.0.0.1"),
-        "PORT": environ.get("SQL_PORT", "5432"),
+        "ENGINE": config("SQL_ENGINE"),
+        "NAME": config("SQL_DATABASE"),
+        "USER": config("SQL_USER"),
+        "PASSWORD": config("SQL_PASSWORD"),
+        "HOST": config("SQL_HOST"),
+        "PORT": config("SQL_PORT"),
     }
 }
 
@@ -163,16 +154,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -189,9 +184,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-LOCALE_PATHS = [
-    join(BASE_DIR, 'locale')
-]
+LOCALE_PATHS = [join(BASE_DIR, 'locale')]
 
 LANGUAGES = [
     ('ru', _('Russian')),
@@ -213,6 +206,7 @@ DATETIME_FORMAT = 'j E Y H:i'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
@@ -233,8 +227,7 @@ CACHES = {
     },
     "select2": {
         "BACKEND": "django_redis.cache.RedisCache",
-        # "LOCATION": "redis://127.0.0.1:6379/2",
-        "LOCATION": "redis://%s:6379/2" % environ.get("REDIS_HOST", "127.0.0.1"),
+        "LOCATION": "redis://%s:6379/2" % config("REDIS_HOST"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

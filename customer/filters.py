@@ -1,4 +1,5 @@
-from django_filters import FilterSet, CharFilter
+from django_filters import CharFilter, FilterSet
+
 from .models import Customer
 
 
@@ -10,7 +11,6 @@ class CustomerFilter(FilterSet):
     class Meta:
         model = Customer
         fields = ['nick', 'name', 'city__city']
-
 
         # fields = {
         #     'nick': ['exact', 'icontains'],
