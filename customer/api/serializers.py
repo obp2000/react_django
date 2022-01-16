@@ -2,7 +2,7 @@
 API Serializers.
 """
 from react_django.api.serializers import WritableNestedModelSerializerMod
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import CharField, ModelSerializer
 
 from ..models import City, Customer
 
@@ -24,6 +24,7 @@ class CustomerSerializer(WritableNestedModelSerializerMod):
     Customer serializer.
     """
     city = CitySerializer()
+    pindex = CharField(read_only=True)
 
     class Meta:
         """
@@ -31,6 +32,10 @@ class CustomerSerializer(WritableNestedModelSerializerMod):
         """
         model = Customer
         fields = '__all__'
+
+    def validate(self, attrs):
+        attrs.pop('pindex', None)
+        return super().validate(attrs)
 
 
 class CustomerSelectSerializer(ModelSerializer):

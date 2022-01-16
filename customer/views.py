@@ -23,13 +23,12 @@ from .tables import CustomerTable
 # from react_django.utils import AccessMixin
 
 
-
 class CustomerQuerysetMixin(object):
     queryset = Customer.objects.select_related("city")
 
 
 class CustomerSuccessUrlMixin(object):
-    success_url = reverse_lazy('customer:customer-list')
+    success_url = reverse_lazy('customer:list')
 
 
 class CustomerEditMixin(CustomerSuccessUrlMixin, CustomerQuerysetMixin):
@@ -46,16 +45,11 @@ class CustomerList(CustomerQuerysetMixin, SingleTableMixin, FilterView):
     extra_context = {
         'filter_helper':
         FilterFormHelper(filter_fields=CustomerFilter._meta.fields),
-        'delete_object_form':
-        DeleteObjectForm,
-        'delete_path_name':
-        'customer:customer-delete',
-        'table_title':
-        _("customers").capitalize(),
-        'new_url':
-        reverse_lazy('customer:customer-new'),
-        'list_url':
-        reverse_lazy('customer:customer-list')
+        'delete_object_form': DeleteObjectForm,
+        'delete_path_name': 'customer:delete',
+        'table_title': _("customers").capitalize(),
+        'new_url': reverse_lazy('customer:new'),
+        'list_url': reverse_lazy('customer:list')
     }
 
 

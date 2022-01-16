@@ -14,7 +14,7 @@ from os.path import abspath, dirname, join
 
 # from os import environ
 from decouple import Csv, config
-from django.conf.locale.ru import formats as ru_formats
+# from django.conf.locale.ru import formats as ru_formats
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -36,16 +36,16 @@ ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=Csv())
 
 INSTALLED_APPS = [
     'user_auth',
-    'test_without_migrations',
+    # 'test_without_migrations',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'jquery',
     'django.contrib.sites',
-    'rest_framework',
+
+    # 3rd-party apps
     'corsheaders',
     'crispy_forms',
     'extra_views',
@@ -54,34 +54,76 @@ INSTALLED_APPS = [
     "bootstrap4",
     'bootstrap_navbar',
     'django_select2',
-    'react_django',
-    # 'city.apps.CityConfig',
-    'customer',
-    'product',
-    # 'delivery_type',
-    'order_item',
-    'order',
-    'knox',
-    'django_extensions',
-    # 'djangoformsetjs',
     'dynamic_formsets',
     'widget_tweaks',
     'bootstrap_modal_forms',
     'debug_toolbar',
+    # 'knox',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'django_extensions',
+    # 'djangoformsetjs',
+
+    # Local
+    # 'react_django',
+    'customer',
+    'product',
+    'order_item',
+    'order',
 ]
 
+# Internationalization
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+USE_I18N = True
+
+USE_L10N = True
+
+LOCALE_PATHS = [join(BASE_DIR, 'locale')]
+
+LANGUAGES = [
+    ('ru', _('Russian')),
+]
+
+LANGUAGE_CODE = 'ru'
+
+TIME_ZONE = 'Europe/Moscow'
+USE_TZ = True
+
+# ru_formats.DATE_FORMAT = 'd.m.Y'
+# ru_formats.TIME_FORMAT = 'H:i'
+# ru_formats.DATETIME_FORMAT = 'd.m.Y H:i'
+
+DATE_FORMAT = 'd.m.Y'
+TIME_FORMAT = 'H:i'
+
+DATETIME_FORMAT = "%d.%m.%Y %H:%M:%S"
+DATETIME_INPUT_FORMATS = [DATETIME_FORMAT]
+
 REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.AllowAny',
-    # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_PAGINATION_CLASS':
     # 'react_django_api.apps.PageNumberPaginationWithNumPages',
     'react_django.api.pagination.PageNumberPaginationWithNumPages',
     'PAGE_SIZE': 3,
     'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
     'SEARCH_PARAM': 'term',
-    'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
+    'DATETIME_FORMAT': DATETIME_FORMAT,
+    'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
+    # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
     #     'DEFAULT_AUTHENTICATION_CLASSES': (
     #     'knox.auth.TokenAuthentication',
@@ -177,31 +219,6 @@ REST_KNOX = {
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
-USE_I18N = True
-
-USE_L10N = True
-
-LOCALE_PATHS = [join(BASE_DIR, 'locale')]
-
-LANGUAGES = [
-    ('ru', _('Russian')),
-]
-
-LANGUAGE_CODE = 'ru'
-
-TIME_ZONE = 'Europe/Moscow'
-USE_TZ = True
-
-ru_formats.DATE_FORMAT = 'd.m.Y'
-ru_formats.TIME_FORMAT = 'H:i'
-ru_formats.DATETIME_FORMAT = 'd.m.Y H:i'
-DATE_FORMAT = 'd.m.Y'
-TIME_FORMAT = 'H:i'
-DATETIME_FORMAT = 'j E Y H:i'
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -241,3 +258,6 @@ INTERNAL_IPS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

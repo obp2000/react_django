@@ -1,34 +1,22 @@
-# navbar = [{'url': '/', 'label': 'main page'},
-#           {'url': 'customer-list', 'label': 'customers'},
-#           {'url': 'product-list', 'label': 'products'},
-#           {'url': 'order-list', 'label': 'orders'}]
-
-
 from typing import Dict, Optional
-from django.urls import reverse_lazy
+
 from bootstrap_navbar.navbars.base import LazyAttribute
-from bootstrap_navbar.navbars.bootstrap4 import (
-    NavBar,
-    Brand,
-    Link,
-    Image,
-    NavGroup,
-    ListItem,
-    DropDown,
-)
+from bootstrap_navbar.navbars.bootstrap4 import (Brand, DropDown, Image, Link,
+                                                 ListItem, NavBar, NavGroup)
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 
 class MainMenu(NavGroup):
     """Contains the navitems for the site pages."""
     home = ListItem(text=_('main page').title(),
-                    href=reverse_lazy("customer:customer-list"))
+                    href=reverse_lazy("customer:list"))
     customers = ListItem(text=_('customers').title(),
-                         href=reverse_lazy("customer:customer-list"))
+                         href=reverse_lazy("customer:list"))
     products = ListItem(text=_('products').title(),
-                        href=reverse_lazy("product-list"))
+                        href=reverse_lazy("product:list"))
     orders = ListItem(text=_('orders').title(),
-                      href=reverse_lazy("order-list"))
+                      href=reverse_lazy("order:list"))
     login = LazyAttribute(method="get_login")
     register = LazyAttribute(method="get_register")
 

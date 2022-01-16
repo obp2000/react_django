@@ -20,7 +20,7 @@ class Customer(Model):
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('customer:customer-update', kwargs={'pk': self.pk})
+        return reverse('customer:update', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['nick']

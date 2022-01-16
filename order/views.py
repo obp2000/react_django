@@ -22,16 +22,16 @@ from .tables import OrderTable
 
 
 class OrderListQuerysetMixin:
-    queryset = Order.orders.list()
+    queryset = Order.objects.list()
 
 
 class OrderSuccessUrlMixin:
-    success_url = reverse_lazy('order-list')
+    success_url = reverse_lazy('order:list')
 
 
 class OrderEditMixin(OrderSuccessUrlMixin):
     model = Order
-    queryset = Order.orders.details()
+    queryset = Order.objects.details()
     form_class = OrderForm
     template_name = "object_form.html"
     inlines = [OrderItemInline]
@@ -56,7 +56,6 @@ class OrderEditMixin(OrderSuccessUrlMixin):
 
 
 class OrderList(OrderListQuerysetMixin, SingleTableMixin, FilterView):
-    # queryset = Order.orders.list()
     table_class = OrderTable
     table_pagination = {'per_page': 3}
     # template_name_suffix = '_list'
@@ -67,10 +66,10 @@ class OrderList(OrderListQuerysetMixin, SingleTableMixin, FilterView):
         'filter_helper':
         FilterFormHelper(filter_fields=OrderFilter._meta.fields),
         'delete_object_form': DeleteObjectForm,
-        'delete_path_name': 'order-delete',
+        'delete_path_name': 'order:delete',
         'table_title': _("orders").capitalize(),
-        'new_url': reverse_lazy('order-new'),
-        'list_url': reverse_lazy('order-list')
+        'new_url': reverse_lazy('order:new'),
+        'list_url': reverse_lazy('order:list')
     }
 
 
@@ -94,6 +93,5 @@ class OrderDelete(OrderSuccessUrlMixin, OrderListQuerysetMixin,
         'delete_form_helper': DeleteFormHelper
     }
     template_name = "object_confirm_delete.html"
-    # success_url = reverse_lazy('order-list')
     success_message = (f'{_("order").capitalize()} '
                        f'{_("was deleted successfully")}')

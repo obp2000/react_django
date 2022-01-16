@@ -64,8 +64,12 @@ class Product(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    # products = ProductQuerySet.as_manager()
-    products = ProductManager()
+    # products = ProductManager()
+    objects = ProductManager()
+
+    # @property
+    # def one_m_weight(self):
+    #     return self.density * self.width / 100
 
     def threads_display(self):
         return self.get_threads_display() if self.threads else ''
@@ -74,7 +78,7 @@ class Product(Model):
         return self.get_contents_display() if self.contents else ''
 
     def get_absolute_url(self):
-        return reverse('product-update', kwargs={'pk': self.pk})
+        return reverse('product:update', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['name']

@@ -19,15 +19,15 @@ from .tables import ProductTable
 
 
 class ProductListQuerysetMixin:
-    queryset = Product.products.select_related("product_type")
+    queryset = Product.objects.select_related("product_type")
 
 
 class ProductSuccessUrlMixin:
-    success_url = reverse_lazy('product-list')
+    success_url = reverse_lazy('product:list')
 
 
 class ProductEditMixin(ProductSuccessUrlMixin):
-    queryset = Product.products.details()
+    queryset = Product.objects.details()
     form_class = ProductForm
     template_name = "object_form.html"
     extra_context = {'object_form_helper': ProductFormHelper}
@@ -42,10 +42,10 @@ class ProductList(ProductListQuerysetMixin, SingleTableMixin, FilterView):
         'filter_helper':
         FilterFormHelper(filter_fields=ProductFilter._meta.fields),
         'delete_object_form': DeleteObjectForm,
-        'delete_path_name': 'product-delete',
+        'delete_path_name': 'product:delete',
         'table_title': _("products").capitalize(),
-        'new_url': reverse_lazy('product-new'),
-        'list_url': reverse_lazy('product-list')
+        'new_url': reverse_lazy('product:new'),
+        'list_url': reverse_lazy('product:list')
     }
 
 

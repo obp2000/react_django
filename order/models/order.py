@@ -34,12 +34,11 @@ class Order(Model):
                                through="order_item.OrderItem",
                                blank=True)
 
-    # objects = Manager()
-    # orders = OrderQuerySet.as_manager()
-    orders = OrderManager()
+    # orders = OrderManager()
+    objects = OrderManager()
 
     def get_absolute_url(self):
-        return reverse('order-update', kwargs={'pk': self.pk})
+        return reverse('order:update', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['-created_at']

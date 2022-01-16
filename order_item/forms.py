@@ -11,7 +11,7 @@ from .models import OrderItem
 
 class ProductWidget(ModelSelect2Widget):
     search_fields = ["name__icontains", "product_type__name__icontains"]
-    queryset = Product.products.details()
+    queryset = Product.objects.details()
 
 
 class OrderItemForm(ModelForm):
@@ -43,7 +43,7 @@ class OrderItemForm(ModelForm):
 
 class BaseOrderItemInlineFormSet(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
-        kwargs['queryset'] = OrderItem.order_items.list()
+        kwargs['queryset'] = OrderItem.objects.list()
         super().__init__(*args, **kwargs)
         self.extra = 1
 

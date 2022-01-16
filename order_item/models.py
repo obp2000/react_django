@@ -18,8 +18,8 @@ class OrderItem(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    # order_items = OrderItemQuerySet.as_manager()
-    order_items = OrderItemManager()
+    # order_items = OrderItemManager()
+    objects = OrderItemManager()
 
     class Meta:
         verbose_name = _('order_item')
