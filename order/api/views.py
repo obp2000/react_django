@@ -5,7 +5,7 @@ from rest_framework.mixins import ListModelMixin
 # from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
-from ..models import DeliveryType
+from ..models import DeliveryType, Order
 from ..views import OrderListQuerysetMixin
 from .serializers import OrderSerializer
 
@@ -25,8 +25,10 @@ from .serializers import OrderSerializer
 #     pagination_class = None
 
 
-class OrderViewSet(OrderListQuerysetMixin, ModelViewSet):
+class OrderViewSet(ModelViewSet):
     """
     API endpoint that allows orders to be viewed or edited.
     """
+    queryset = Order.objects.details()
     serializer_class = OrderSerializer
+    search_fields = ['customer__nick', 'customer__name']

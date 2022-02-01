@@ -17,8 +17,6 @@ class Order(Model):
                           SET_NULL,
                           null=True,
                           verbose_name=_('customer'))
-    created_at = DateTimeField(_('created_at'), auto_now_add=True)
-    updated_at = DateTimeField(_('updated_at'), auto_now=True)
     post_cost = PositiveIntegerField(_('post_cost'), default=0, blank=True)
     packet = PositiveIntegerField(_('packet'),
                                   choices=Packet.choices,
@@ -30,9 +28,11 @@ class Order(Model):
                                  null=True)
     address = CharField(_('address'), max_length=255, blank=True)
     gift = CharField(_('gift'), max_length=255, blank=True)
-    products = ManyToManyField(Product,
-                               through="order_item.OrderItem",
-                               blank=True)
+    created_at = DateTimeField(_('created_at'), auto_now_add=True)
+    updated_at = DateTimeField(_('updated_at'), auto_now=True)
+    # products = ManyToManyField(Product,
+    #                            through="order_item.OrderItem",
+    #                            blank=True)
 
     # orders = OrderManager()
     objects = OrderManager()

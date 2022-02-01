@@ -7,13 +7,14 @@ from .models import Order
 class OrderTable(Table):
 
     id = Column(linkify=True)
-    sum = Column(linkify=True, verbose_name=_('sum').capitalize())
+    order_items_cost = Column(linkify=True, verbose_name=_('sum').capitalize())
     delete = TemplateColumn(template_name="delete_column.html",
                             verbose_name='')
 
     class Meta:
         model = Order
-        fields = ["id", "customer", "sum", "created_at", "updated_at"]
+        fields = ["id", "customer", "order_items_cost",
+            "created_at", "updated_at"]
         template_name = "django_tables2/bootstrap4.html"
         attrs = {
             "class":

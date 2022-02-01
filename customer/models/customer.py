@@ -9,11 +9,18 @@ from .city import City
 class Customer(Model):
     nick = CharField(_('nick'), max_length=255)
     name = CharField(_('name'), max_length=255, blank=True)
+    # city = ForeignKey(City,
+    #                   SET_NULL,
+    #                   blank=True,
+    #                   null=True,
+    #                   db_column='pindex',
+    #                   verbose_name=_('city'))
     city = ForeignKey(City,
                       SET_NULL,
                       blank=True,
                       null=True,
-                      db_column='pindex',
+                      # related_name="cities1",
+                      # db_column='city_id',
                       verbose_name=_('city'))
     address = CharField(_('address'), max_length=255, blank=True)
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
@@ -23,7 +30,7 @@ class Customer(Model):
         return reverse('customer:update', kwargs={'pk': self.pk})
 
     class Meta:
-        ordering = ['nick']
+        ordering = ['-updated_at']
         verbose_name = _('customer')
         verbose_name_plural = _('customers')
         permissions = [

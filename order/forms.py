@@ -14,10 +14,10 @@ class CustomerWidget(ModelSelect2Widget):
 
 class OrderForm(ModelForm):
 
-    sum = CharFieldDisabled()
+    order_items_cost = CharFieldDisabled()
     total_postals = CharFieldDisabled()
     total_sum = CharFieldDisabled()
-    weight = CharFieldDisabled()
+    order_items_weight = CharFieldDisabled()
     pindex = CharFieldDisabled(label=_('pindex').capitalize())
     gift_weight = CharFieldDisabled()
     samples_weight = CharFieldDisabled(label=_('samples'))

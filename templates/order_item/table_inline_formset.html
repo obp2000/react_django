@@ -59,8 +59,8 @@
                 <tr>
                     <td class="form-group" id="add_order_item_button_holder"></td>
                     <td class="form-group" colspan="2"></td>
-                    {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.sum %}
-                    {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.weight %}
+                    {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.order_items_cost %}
+                    {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False field=form.order_items_weight %}
                 </tr>
                 <tr id="gift"{% if not order.need_gift %} style="display: none;"{% endif%}>
                     {% include 'bootstrap4/field.html' with tag="td" field=form.gift %}

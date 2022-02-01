@@ -16,6 +16,14 @@ from django_select2.views import AutoResponseView
 
 class ProductAutoResponseView(AutoResponseView):
 
+    def pindex(self, obj):
+        if hasattr(obj, "city") and hasattr(obj.city, "pindex"):
+            return obj.city.pindex
+        elif hasattr(obj, "pindex"):
+            return obj.pindex
+        else:
+            return None
+
     def get(self, request, *args, **kwargs):
         """
         Return a :class:`.django.http.JsonResponse`.
@@ -46,9 +54,7 @@ class ProductAutoResponseView(AutoResponseView):
                      hasattr(obj, "price") else None,
                      "one_m_weight": obj.one_m_weight if
                      hasattr(obj, "one_m_weight") else None,
-                     "pindex": obj.city.pindex if
-                     hasattr(obj, "city") and hasattr(obj.city, "pindex")
-                     else None,
+                     "pindex": self.pindex(obj),
                      "city": obj.city.city if
                      hasattr(obj, "city") and hasattr(obj.city, "city")
                      else None,

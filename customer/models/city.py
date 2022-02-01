@@ -4,12 +4,21 @@ from django.utils.translation import pgettext_lazy
 
 
 class City(Model):
-    pindex = CharField(_('pindex'), primary_key=True, max_length=6)
-    city = CharField(pgettext_lazy('city name', 'name'), unique=True,
-                     max_length=80)
+    pindex = CharField(_('pindex'), max_length=6, null=True, blank=True)
+    city = CharField(pgettext_lazy('city name', 'name'), max_length=80)
+    # pindex = CharField(max_length=6, blank=True, null=True)
+    opsname = CharField(max_length=60, blank=True, null=True)
+    # citykey = CharField(max_length=80, blank=True, null=True)
+    # geo_lat = DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    # geo_long = DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    address = CharField(max_length=512, blank=True, null=True)
+    # json_dlvlim = models.CharField(max_length=1024, blank=True, null=True)
 
     class Meta:
-        ordering = ['city']
+        index_together = [
+            ["city", "pindex"]
+        ]
+        ordering = ['city', 'pindex']
         verbose_name = _('city')
         verbose_name_plural = _('cities')
         # indexes = [

@@ -43,10 +43,10 @@ class OrderEditMixin(OrderSuccessUrlMixin):
 
     def get_initial(self):
         return {
-            'sum': getattr(self.object, 'sum', 0),
+            'order_items_cost': getattr(self.object, 'order_items_cost', 0),
             'total_postals': getattr(self.object, 'total_postals', 0),
             'total_sum': getattr(self.object, 'total_sum', 0),
-            'weight': getattr(self.object, 'weight', 0),
+            'order_items_weight': getattr(self.object, 'order_items_weight', 0),
             'pindex': getattr(self.object, 'pindex', None),
             'gift_weight': GIFT_WEIGHT,
             'samples_weight': SAMPLES_WEIGHT,

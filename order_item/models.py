@@ -24,3 +24,14 @@ class OrderItem(Model):
     class Meta:
         verbose_name = _('order_item')
         verbose_name_plural = _('order_items')
+
+    # @property
+    # def cost(self):
+    #     return self.price * self.amount
+
+    # @property
+    # def weight(self):
+    #     if (self.amount and self.product and self.product.one_m_weight):
+    #         return int(self.amount * self.product.one_m_weight)
+    #     else:
+    #         return 0

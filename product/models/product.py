@@ -1,6 +1,6 @@
-from django.db.models import (SET_NULL, CharField, DateTimeField, DecimalField,
-                              ForeignKey, ImageField, IntegerField, Model,
-                              PositiveIntegerField)
+from django.db.models import (SET_NULL, BooleanField, CharField, DateTimeField,
+                              DecimalField, ForeignKey, ImageField,
+                              IntegerField, Model, PositiveIntegerField)
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -29,6 +29,7 @@ class Product(Model):
                                     choices=Contents.choices,
                                     blank=True,
                                     null=True)
+    fleece = BooleanField(_('fleece'), blank=True, null=True)
     price = IntegerField(_('price'))
     weight = DecimalField(_('weight'),
                           max_digits=4,
@@ -64,12 +65,14 @@ class Product(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    # products = ProductManager()
     objects = ProductManager()
 
     # @property
     # def one_m_weight(self):
-    #     return self.density * self.width / 100
+    #     if self.density and self.width:
+    #         return int(self.density * self.width / 100)
+    #     else:
+    #         return 0
 
     def threads_display(self):
         return self.get_threads_display() if self.threads else ''
@@ -81,7 +84,7 @@ class Product(Model):
         return reverse('product:update', kwargs={'pk': self.pk})
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-updated_at']
         verbose_name = _('product')
         verbose_name_plural = _('products')
 

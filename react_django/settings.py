@@ -116,13 +116,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS':
-    # 'react_django_api.apps.PageNumberPaginationWithNumPages',
-    'react_django.api.pagination.PageNumberPaginationWithNumPages',
-    'PAGE_SIZE': 3,
+        # 'react_django_api.apps.PageNumberPaginationWithNumPages',
+        'react_django.api.pagination.PageNumberPaginationWithNumPages',
+    'PAGE_SIZE': 8,
     'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
     'SEARCH_PARAM': 'term',
     'DATETIME_FORMAT': DATETIME_FORMAT,
     'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.MultiPartParser',
+        # 'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.JSONParser',
+    ]
     # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
     #     'DEFAULT_AUTHENTICATION_CLASSES': (

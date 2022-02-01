@@ -9,7 +9,9 @@ from .models import Customer
 
 
 class CityWidget(ModelSelect2Widget):
-    search_fields = ["city__icontains"]
+    search_fields = ["city__icontains", "pindex__icontains"]
+    def label_from_instance(self, obj):
+        return (' инд.').join([obj.city, obj.pindex])
 
 
 class CustomerForm(ModelForm):
