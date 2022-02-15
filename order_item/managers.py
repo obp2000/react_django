@@ -7,15 +7,18 @@ class OrderItemQuerySet(QuerySet):
                                      F('product__width') / 100,
                                      output_field=IntegerField())
 
-    sum = ExpressionWrapper(F('price') * F('amount'),
-                            output_field=DecimalField(decimal_places=2))
+    # cost = ExpressionWrapper(F('price') * F('amount'),
+    #                         output_field=DecimalField(decimal_places=2))
 
     weight = ExpressionWrapper(F('amount') * F('one_m_weight'),
                                output_field=IntegerField())
 
     def list(self):
-        return self.select_related("product").annotate(
-            one_m_weight=self.one_m_weight, weight=self.weight, sum=self.sum)
+        return self.select_related("product__product_type")
+        # .annotate(
+        #     one_m_weight=self.one_m_weight,
+        #     weight=self.weight
+        #     )
 
 
 OrderItemManager = OrderItemQuerySet.as_manager

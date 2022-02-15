@@ -7,8 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-10 22:37+0300\n"
+"POT-Creation-Date: 2022-02-14 22:39+0300\n"
 "PO-Revision-Date: 2021-05-30 22:13+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,40 +18,34 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: user_auth/forms.py:19
+#: user_auth/forms.py:20
 msgid "enter"
 msgstr "вход"
 
-#: user_auth/forms.py:29
+#: user_auth/forms.py:30
 msgid "register"
 msgstr "регистрация"
 
-#: user_auth/forms.py:45
+#: user_auth/forms.py:46
 msgid "change"
 msgstr "изменить"
 
-#: user_auth/templates/user_auth/logged_out.html:6
-msgid "login"
-msgstr "войти"
-
-#: user_auth/templates/user_auth/login.html:7
-msgid ""
-"Your account doesn't have access to this page. To proceed, please login with "
-"an account that has access"
-msgstr ""
-"Ваша учетная запись не имеет доступа к этой странице. Для продолжения, "
-"пожалуйста, водите с учетной записью, которая имеет доступ"
-
-#: user_auth/templates/user_auth/login.html:9
-msgid "please login to see this page"
-msgstr "пожалуйста, войдите для просмотра этой страницы"
-
-#: user_auth/templates/user_auth/password_change_done.html:4
-#: user_auth/views.py:65 user_auth/views.py:70 user_auth/views.py:77
-#: user_auth/views.py:84 user_auth/views.py:89
+#: user_auth/views.py:17 user_auth/views.py:22 user_auth/views.py:29
+#: user_auth/views.py:36 user_auth/views.py:41
 msgid "successfully"
 msgstr "успешно"
+
+#~ msgid "login"
+#~ msgstr "войти"
+
+#~ msgid ""
+#~ "Your account doesn't have access to this page. To proceed, please login "
+#~ "with an account that has access"
+#~ msgstr ""
+#~ "Ваша учетная запись не имеет доступа к этой странице. Для продолжения, "
+#~ "пожалуйста, водите с учетной записью, которая имеет доступ"
+
+#~ msgid "please login to see this page"
+#~ msgstr "пожалуйста, войдите для просмотра этой страницы"

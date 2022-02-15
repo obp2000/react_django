@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-10 22:37+0300\n"
+"POT-Creation-Date: 2022-02-14 22:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,27 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: order/forms.py:20
-msgid "pindex"
-msgstr "почтовый индекс"
-
-#: order/forms.py:22
+#: order/forms.py:16
 msgid "samples"
 msgstr "образцы"
 
-#: order/forms.py:49
-msgid "city"
-msgstr "город"
-
-#: order/forms.py:53 order/models.py:85
-msgid "address"
-msgstr "адрес"
-
-#: order/forms.py:60
-msgid "save"
-msgstr "сохранить"
-
-#: order/forms_with_sums_old.py:14 order/tables.py:9
+#: order/forms_with_sums_old.py:14 order/tables.py:10
 msgid "sum"
 msgstr "сумма"
 
@@ -48,60 +32,106 @@ msgstr "сумма"
 msgid "weight"
 msgstr "вес"
 
-#: order/models.py:21
-msgid "(Unknown)"
-msgstr "(Неизвестно)"
+#: order/models/delivery_type.py:6
+msgid "Post of Russia"
+msgstr "Почта России"
 
-#: order/models.py:77
+#: order/models/delivery_type.py:7
+msgid "Business Lines"
+msgstr "Деловые линии"
+
+#: order/models/delivery_type.py:8
+msgid "PEK"
+msgstr "ПЭК"
+
+#: order/models/delivery_type.py:9
+msgid "GTD (Whale)"
+msgstr "GTD (Кит)"
+
+#: order/models/delivery_type.py:10
+msgid "Energy"
+msgstr "Энергия"
+
+#: order/models/delivery_type.py:11
+msgid "Railway Expedition"
+msgstr "ЖелДор Экспедиция"
+
+#: order/models/delivery_type.py:12
+msgid "Ratek"
+msgstr "Ратек"
+
+#: order/models/delivery_type.py:13
+msgid "Baikal Service"
+msgstr "Байкал Сервис"
+
+#: order/models/delivery_type.py:14
+msgid "SDEK Parcel"
+msgstr "СДЭК Посылочка"
+
+#: order/models/order.py:19
 msgid "customer"
 msgstr "заказчик"
 
-#: order/models.py:78
-msgid "created_at"
-msgstr "создан"
-
-#: order/models.py:79
-msgid "updated_at"
-msgstr "обновлен"
-
-#: order/models.py:80
+#: order/models/order.py:20
 msgid "post_cost"
 msgstr "почтовые расходы"
 
-#: order/models.py:81
+#: order/models/order.py:21
 msgid "packet"
 msgstr "почтовый пакет"
 
-#: order/models.py:83
+#: order/models/order.py:25
 msgid "delivery_type"
 msgstr "способ доставки"
 
-#: order/models.py:86
+#: order/models/order.py:29
+msgid "address"
+msgstr "адрес"
+
+#: order/models/order.py:30
 msgid "gift"
 msgstr "подарок"
 
-#: order/models.py:96 order/views.py:100
+#: order/models/order.py:31
+msgid "created_at"
+msgstr "создан"
+
+#: order/models/order.py:32
+msgid "updated_at"
+msgstr "обновлен"
+
+#: order/models/order.py:44
 msgid "order"
 msgstr "заказ"
 
-#: order/models.py:97 order/views.py:46
+#: order/models/order.py:45 order/views.py:68
 msgid "orders"
 msgstr "заказы"
 
-#: order/models.py:102
-msgid "from"
-msgstr "от"
-
-#: order/views.py:59
+#: order/views.py:78
 #, python-format
 msgid "order %(customer)s was created successfully"
 msgstr "заказ %(customer)s создан успешно"
 
-#: order/views.py:76
+#: order/views.py:84
 #, python-format
 msgid "order %(customer)s was updated successfully"
 msgstr "заказ %(customer)s обновлен успешно"
 
-#: order/views.py:100
-msgid "was deleted successfully"
-msgstr "удален успешно"
+#~ msgid "city"
+#~ msgstr "город"
+
+#~ msgid "pindex"
+#~ msgstr "почтовый индекс"
+
+#~ msgid "save"
+#~ msgstr "сохранить"
+
+#~ msgid "(Unknown)"
+#~ msgstr "(Неизвестно)"
+
+#~ msgid "from"
+#~ msgstr "от"
+
+#~ msgid "was deleted successfully"
+#~ msgstr "удален успешно"

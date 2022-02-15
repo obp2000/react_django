@@ -1,9 +1,9 @@
 """
 API Serializers.
 """
-from react_django.api.serializers import WritableNestedModelSerializer
-from rest_framework.serializers import (ChoiceField, ModelSerializer,
-                                        SerializerMethodField)
+from collections import ChainMap
+
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
 from ..models import Product, ProductType
 
@@ -19,25 +19,22 @@ class ProductTypeSerializer(ModelSerializer):
         model = ProductType
         fields = ['id', 'name']
 
+    @classmethod
+    def options(cls):
+        return cls(ProductType.options, many=True).data
+
 
 class ProductSerializer(ModelSerializer):
     """
     Product serializer.
     """
-    product_type = ProductTypeSerializer()
-    product_type_options = SerializerMethodField()
-
-    def get_product_type_options(self, product):
-        return ([ProductTypeSerializer({'id': None, 'name': '----'}).data] +
-                [ProductTypeSerializer(product_type).data for product_type
-                 in ProductType.objects.all()])
-
     class Meta:
         """
         Set Product serializer.
         """
         model = Product
-        fields = ['id', 'name', 'product_type', 'product_type_options',
+        fields = ['id', 'name',
+                  'product_type', 'get_product_type_display',
                   'threads', 'get_threads_display',
                   'contents', 'get_contents_display',
                   'fleece', 'price',
@@ -46,51 +43,18 @@ class ProductSerializer(ModelSerializer):
                   'length_for_count', 'price_pre', 'image', 'created_at',
                   'updated_at']
 
-    remove_keys = ['product_type[id]', 'product_type[name]',
-                   'contents[value]', 'contents[display_name]',
-                   'threads[value]', 'threads[display_name]']
+    select_fields = ['product_type', 'threads', 'contents']
+
+    values_map = {'true': True,
+                  'false': False,
+                  '': None}
 
     def to_internal_value(self, data):
         data_dict = data.dict()
-        print('data: ', data_dict)
-        if data_dict.get('product_type[id]', None):
-            data_dict['product_type'] = {}
-            data_dict['product_type']['id'] = data_dict['product_type[id]']
-            data_dict['product_type']['name'] = data_dict['product_type[name]']
-            data_dict['product_type'] = ProductType(
-                **data_dict['product_type'])
-        elif data_dict.get('product_type[id]', None) == '':
-            # data_dict['product_type'] = {}
-            data_dict['product_type'] = None
-        if data_dict.get('contents[value]', None):
-            data_dict['contents'] = data_dict['contents[value]']
-        elif data_dict.get('contents[value]', None) == '':
-            data_dict['contents'] = None
-        if data_dict.get('threads[value]', None):
-            data_dict['threads'] = data_dict['threads[value]']
-        elif data_dict.get('threads[value]', None) == '':
-            data_dict['threads'] = None
-        if data_dict.get('fleece', None) == 'true':
-            data_dict['fleece'] = True
-        elif data_dict.get('fleece', None) == 'false':
-            data_dict['fleece'] = False
-
-        for key in self.remove_keys:
-            data_dict.pop(key, None)
-        for key, value in data_dict.items():
-            if value == '':
-                data_dict[key] = None
-        return data_dict
-
-
-class ProductSelectSerializer(ModelSerializer):
-    """
-    Product serializer for select field.
-    """
-    class Meta:
-        """
-        Set Product serializer.
-        """
-        model = Product
-        fields = ['id', 'name', 'price', 'weight', 'width',
-                  'density', 'threads']
+        print('product_data: ', data_dict)
+        mapped_fields = {key: self.values_map[value] for
+                         key, value in data_dict.items() if
+                         value in self.values_map}
+        blank_fields = {select_field: None for
+                        select_field in self.select_fields}
+        return ChainMap(mapped_fields, data_dict, blank_fields)

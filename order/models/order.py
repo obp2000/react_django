@@ -34,7 +34,6 @@ class Order(Model):
     #                            through="order_item.OrderItem",
     #                            blank=True)
 
-    # orders = OrderManager()
     objects = OrderManager()
 
     def get_absolute_url(self):

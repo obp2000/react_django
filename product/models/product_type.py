@@ -7,6 +7,16 @@ class ProductType(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
+    @classmethod
+    @property
+    def blank(cls):
+        return cls(id=None, name= '----')
+
+    @classmethod
+    @property
+    def options(cls):
+        return [cls.blank] + list(cls.objects.all())
+
     class Meta:
         ordering = ['name']
         verbose_name = _('type')

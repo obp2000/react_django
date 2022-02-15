@@ -1,33 +1,28 @@
 """
 API Serializers.
 """
-from product.api.serializers import ProductSelectSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
+from product.api.serializers import ProductSerializer
 # from product.models import Product
-from react_django.api.serializers import WritableNestedModelSerializerMod
-from rest_framework.serializers import (DecimalField, IntegerField,
-                                        ReadOnlyField, SerializerMethodField)
+from rest_framework.serializers import ModelSerializer
 
 from ..models import OrderItem
 
 
-class OrderItemSerializer(WritableNestedModelSerializerMod):
+class OrderItemSerializer(ModelSerializer):
     """
     Order item serializer.
     """
-    product = ProductSelectSerializer()
-    # cost = ReadOnlyField()
-    # weight = ReadOnlyField()
+    product = ProductSerializer()
 
     class Meta:
         """
         Set Order item serializer.
         """
         model = OrderItem
-        # fields = ['id', 'order', 'product', 'amount', 'price', 'cost',
-        #     'weight']
-        fields = '__all__'
+        fields = ['id', 'order', 'product', 'amount', 'price', 'cost',
+            'weight']
 
-    # def validate(self, attrs):
-    #     attrs.pop('cost', None)
-    #     attrs.pop('weight', None)
-    #     return super().validate(attrs)
+    def to_internal_value(self, data):
+        print('order_item_data: ', data)
+        return data

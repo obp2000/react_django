@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-10 22:37+0300\n"
+"POT-Creation-Date: 2022-02-14 22:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,50 +20,51 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: order_item/forms.py:26
-msgid "sum"
-msgstr "сумма"
+#: order_item/forms.py:22
+msgid "cost"
+msgstr "стоимость"
 
-#: order_item/forms.py:27
+#: order_item/forms.py:23
 msgid "weight"
 msgstr "вес"
 
-#: order_item/forms.py:58
-msgid "count"
-msgstr "рассчитать"
-
-#: order_item/models.py:27
+#: order_item/models.py:12
 msgid "order"
 msgstr "заказ"
 
-#: order_item/models.py:28
+#: order_item/models.py:14
 msgid "product"
 msgstr "ткань"
 
-#: order_item/models.py:29
+#: order_item/models.py:15
 msgid "amount"
 msgstr "количество"
 
-#: order_item/models.py:30
+#: order_item/models.py:17
 msgid "price"
 msgstr "цена"
 
-#: order_item/models.py:31
+#: order_item/models.py:18
 msgid "created_at"
 msgstr "создан"
 
-#: order_item/models.py:32
+#: order_item/models.py:19
 msgid "updated_at"
 msgstr "обновлен"
 
-#: order_item/models.py:37
+#: order_item/models.py:24
 msgid "order_item"
 msgstr "позиция заказа"
 
-#: order_item/models.py:38
+#: order_item/models.py:25
 msgid "order_items"
 msgstr "позиции заказа"
 
-#: order_item/templates/order_item/table_inline_formset.html:80
-msgid "post cost with packet"
-msgstr "почтовые расходы с пакетом"
+#~ msgid "sum"
+#~ msgstr "сумма"
+
+#~ msgid "count"
+#~ msgstr "рассчитать"
+
+#~ msgid "post cost with packet"
+#~ msgstr "почтовые расходы с пакетом"

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from order.models import Order
 from product.models import Product
 
-from .managers import OrderItemManager
+# from .managers import OrderItemManager
 
 
 class OrderItem(Model):
@@ -18,20 +18,21 @@ class OrderItem(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    # order_items = OrderItemManager()
-    objects = OrderItemManager()
+    # objects = OrderItemManager()
 
     class Meta:
         verbose_name = _('order_item')
         verbose_name_plural = _('order_items')
 
-    # @property
-    # def cost(self):
-    #     return self.price * self.amount
+    @property
+    def cost(self):
+        return self.price * self.amount
 
-    # @property
-    # def weight(self):
-    #     if (self.amount and self.product and self.product.one_m_weight):
-    #         return int(self.amount * self.product.one_m_weight)
-    #     else:
-    #         return 0
+    @property
+    def weight(self):
+        return (int(self.amount * self.product.one_m_weight) if
+            self.amount and self.product else 0)
+
+    @property
+    def one_m_weight(self):
+        return self.product.one_m_weight if self.product else 0

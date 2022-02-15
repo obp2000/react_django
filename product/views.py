@@ -1,7 +1,3 @@
-"""
-API endpoints that allow models to be viewed or edited.
-"""
-
 from bootstrap_modal_forms.generic import BSModalDeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -9,31 +5,31 @@ from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView, UpdateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
-from react_django.forms import (DeleteFormHelper, DeleteObjectForm,
-                                FilterFormHelper)
+from react_django.form_helpers import DeleteFormHelper, FilterFormHelper
+from react_django.forms import DeleteObjectForm
 
 from .filters import ProductFilter
-from .forms import ProductForm, ProductFormHelper
+from .form_helpers import ProductFormHelper
+from .forms import ProductForm
 from .models import Product
 from .tables import ProductTable
 
 
-class ProductListQuerysetMixin:
-    queryset = Product.objects.select_related("product_type")
+class ProductQuerysetMixin:
+    queryset = Product.objects.select_related('product_type')
 
 
 class ProductSuccessUrlMixin:
     success_url = reverse_lazy('product:list')
 
 
-class ProductEditMixin(ProductSuccessUrlMixin):
-    queryset = Product.objects.details()
+class ProductEditMixin(ProductQuerysetMixin, ProductSuccessUrlMixin):
     form_class = ProductForm
     template_name = "object_form.html"
     extra_context = {'object_form_helper': ProductFormHelper}
 
 
-class ProductList(ProductListQuerysetMixin, SingleTableMixin, FilterView):
+class ProductList(ProductQuerysetMixin, SingleTableMixin, FilterView):
     table_class = ProductTable
     table_pagination = {'per_page': 5}
     filterset_class = ProductFilter
@@ -45,7 +41,8 @@ class ProductList(ProductListQuerysetMixin, SingleTableMixin, FilterView):
         'delete_path_name': 'product:delete',
         'table_title': _("products").capitalize(),
         'new_url': reverse_lazy('product:new'),
-        'list_url': reverse_lazy('product:list')
+        'list_url': reverse_lazy('product:list'),
+        'total_count': Product.objects.count()
     }
 
 
@@ -68,7 +65,7 @@ class ProductUpdate(ProductEditMixin, SuccessMessageMixin, UpdateView):
         }
 
 
-class ProductDelete(ProductSuccessUrlMixin, ProductListQuerysetMixin,
+class ProductDelete(ProductSuccessUrlMixin, ProductQuerysetMixin,
                     BSModalDeleteView):
     extra_context = {
         'form': DeleteObjectForm,

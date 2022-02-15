@@ -1,5 +1,8 @@
 /* CSS */
-/* 1 вариант (для всей страницы) */
-body {
- font-family: 'Poppins', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+.select2-container .select2-selection--single {
+    height: auto !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    white-space: pre-wrap !important;
 }

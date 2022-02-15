@@ -12,4 +12,4 @@ class DeliveryType(IntegerChoices):
     RATEK = 6, _('Ratek')
     BAIKAL = 7, _('Baikal Service')
     SDEK_P = 8, _('SDEK Parcel')
-    __empty__ = _('(Unknown)')
+    __empty__ = '----'

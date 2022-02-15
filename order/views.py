@@ -1,6 +1,3 @@
-"""
-API endpoints that allow models to be viewed or edited.
-"""
 from bootstrap_modal_forms.generic import BSModalDeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -9,14 +6,15 @@ from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
 from extra_views import (CreateWithInlinesView, NamedFormsetsMixin,
                          UpdateWithInlinesView)
-from order_item.forms import OrderItemsFormSetHelper
+from order_item.form_helpers import OrderItemsFormSetHelper
 from order_item.views import OrderItemInline
-from react_django.forms import (DeleteFormHelper, DeleteObjectForm,
-                                FilterFormHelper)
+from react_django.form_helpers import DeleteFormHelper, FilterFormHelper
+from react_django.forms import DeleteObjectForm
 
 from .consts import GIFT_WEIGHT, PACKET_WEIGHT, SAMPLES_WEIGHT
 from .filters import OrderFilter
-from .forms import OrderForm, OrderFormHelper
+from .form_helpers import OrderFormHelper
+from .forms import OrderForm
 from .models import Order
 from .tables import OrderTable
 
@@ -69,7 +67,8 @@ class OrderList(OrderListQuerysetMixin, SingleTableMixin, FilterView):
         'delete_path_name': 'order:delete',
         'table_title': _("orders").capitalize(),
         'new_url': reverse_lazy('order:new'),
-        'list_url': reverse_lazy('order:list')
+        'list_url': reverse_lazy('order:list'),
+        'total_count': Order.objects.count()
     }
 
 

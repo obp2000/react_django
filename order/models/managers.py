@@ -8,6 +8,9 @@ from ..consts import (GIFT_WEIGHT, PACKET_WEIGHT, POST_DISCOUNT_PERCENT,
 
 class OrderQuerySet(QuerySet):
 
+    order_items_amount = Sum(('order_items__amount'),
+              output_field=DecimalField(max_digits=5, decimal_places=2))
+
     order_items_cost = Sum(F('order_items__price') * F('order_items__amount'),
               output_field=DecimalField(max_digits=7, decimal_places=2))
 
@@ -52,17 +55,18 @@ class OrderQuerySet(QuerySet):
             order_items_cost=self.order_items_cost).order_by('-created_at')
 
     def details(self):
-        return self.select_related("customer__city").annotate(
-            order_items_cost=self.order_items_cost,
-            order_items_weight=self.order_items_weight,
-            post_cost_with_packet=self.post_cost_with_packet,
-            post_discount=self.post_discount,
-            total_postals=self.total_postals,
-            total_sum=self.total_sum,
-            need_gift=self.need_gift,
-            gift_weight=self.gift_weight,
-            total_weight=self.total_weight,
-            pindex=self.pindex).order_by('-created_at')
+        return self.select_related("customer__city").prefetch_related('order_items').annotate(
+              order_items_amount=self.order_items_amount,
+              order_items_cost=self.order_items_cost,
+              order_items_weight=self.order_items_weight,
+              post_cost_with_packet=self.post_cost_with_packet,
+              post_discount=self.post_discount,
+              total_postals=self.total_postals,
+              total_sum=self.total_sum,
+              need_gift=self.need_gift,
+              gift_weight=self.gift_weight,
+              total_weight=self.total_weight,
+              pindex=self.pindex).order_by('-created_at')
 
 
 OrderManager = OrderQuerySet.as_manager

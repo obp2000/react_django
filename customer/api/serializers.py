@@ -1,9 +1,8 @@
 """
 API Serializers.
 """
-from react_django.api.serializers import WritableNestedModelSerializer
-from rest_framework.serializers import (CharField, ModelSerializer,
-                                        ReadOnlyField, ValidationError)
+from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 from ..models import City, Customer
 
@@ -19,7 +18,6 @@ class CitySerializer(ModelSerializer):
         model = City
         fields = ['id', 'pindex', 'city']
         # fields ='__all__'
-        # read_only_fields = ['id','pindex', 'city']
 
 
 class CustomerSerializer(ModelSerializer):
@@ -36,34 +34,6 @@ class CustomerSerializer(ModelSerializer):
         fields = ['id', 'nick', 'name', 'city', 'address',
                   'created_at', 'updated_at']
 
-
     def to_internal_value(self, data):
-        print('data: ', data)
-        if data.get('city', None) and data['city'].get('id', None):
-            data['city'] = City(**data['city'])
-        else:
-            data.pop('city', None)
+        print('customer_data: ', data)
         return data
-
-    # def validate1(self, data):
-    #     print('validate: ', data)
-    #     if data.get('city', None) and data['city'].get('id', None):
-    #         data['city'] = City(**data['city'])
-    #     else:
-    #         data.pop('city', None)
-    #     return super().validate(data)
-
-
-
-class CustomerSelectSerializer(WritableNestedModelSerializer):
-    """
-    Customer serializer for select field.
-    """
-    city = CitySerializer()
-
-    class Meta:
-        """
-        Set Customer serializer.
-        """
-        model = Customer
-        fields = ['id', 'nick', 'name', 'city', 'address']

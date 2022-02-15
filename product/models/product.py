@@ -3,9 +3,10 @@ from django.db.models import (SET_NULL, BooleanField, CharField, DateTimeField,
                               IntegerField, Model, PositiveIntegerField)
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from react_django.utils import make_label
 
 from .contents import Contents
-from .managers import ProductManager
+# from .managers import ProductManager
 from .product_type import ProductType
 from .threads import Threads
 
@@ -65,23 +66,42 @@ class Product(Model):
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)
 
-    objects = ProductManager()
+    # objects = ProductManager()
 
-    # @property
-    # def one_m_weight(self):
-    #     if self.density and self.width:
-    #         return int(self.density * self.width / 100)
-    #     else:
-    #         return 0
+    @property
+    def get_product_type_display(self):
+        return str(self.product_type) if self.product_type else ''
 
-    def threads_display(self):
-        return self.get_threads_display() if self.threads else ''
+    @property
+    def one_m_weight(self):
+        return (int(self.density * self.width / 100) if
+            self.density and self.width else 0)
 
-    def contents_display(self):
-        return self.get_contents_display() if self.contents else ''
+    @property
+    def price_rub_m(self):
+        return (self.dollar_price * self.dollar_rate * self.one_m_weight / 1000
+            if self.dollar_price and self.dollar_rate else 0)
+
+    @property
+    def density_for_count(self):
+        return (self.weight_for_count / self.length_for_count / self.width * 100
+            if self.weight_for_count and self.length_for_count and self.width
+            else 0)
+
+    @property
+    def meters_in_roll(self):
+        return self.weight * 1000 / self.one_m_weight if self.weight else 0
 
     def get_absolute_url(self):
         return reverse('product:update', kwargs={'pk': self.pk})
+
+    def long_str(self):
+        labels_map = {'product_type': str(self.product_type),
+                      'threads': self.get_threads_display,
+                      'fleece': str(Product._meta.get_field('fleece').verbose_name),
+                      'contents': self.get_contents_display,
+                      'name': self.name}
+        return make_label(self, labels_map)
 
     class Meta:
         ordering = ['-updated_at']
@@ -89,5 +109,4 @@ class Product(Model):
         verbose_name_plural = _('products')
 
     def __str__(self):
-        return (f'{str(self.product_type)} {self.threads_display()} '
-                f'{self.contents_display()} {self.name}')
+        return self.long_str()

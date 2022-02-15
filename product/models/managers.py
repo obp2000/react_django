@@ -21,7 +21,7 @@ class ProductQuerySet(QuerySet):
                           output_field=DecimalField(decimal_places=2))
 
     def details(self):
-        return self.select_related("product_type").annotate(
+        return self.select_related('product_type').annotate(
             one_m_weight=self.one_m_weight,
             price_rub_m=self.price_rub_m,
             density_for_count=self.density_for_count,

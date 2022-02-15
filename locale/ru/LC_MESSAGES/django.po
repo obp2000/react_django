@@ -7,8 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-10 22:35+0300\n"
+"POT-Creation-Date: 2022-02-14 22:39+0300\n"
 "PO-Revision-Date: 2021-05-30 22:09+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,58 +18,63 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: react_django/forms.py:27
-msgid "are you sure you want to delete"
-msgstr "вы уверены, что хотите удалить"
+#: templates/list_header.html:11
+msgid "new"
+msgstr "новый"
 
-#: react_django/forms.py:31
-msgid "Yes"
-msgstr "Да"
+#: templates/order_item/table_inline_formset.html:83
+msgid "post cost with packet"
+msgstr "тариф почты с пакетом"
 
-#: react_django/forms.py:52
-msgid "search"
-msgstr "поиск"
-
-#: react_django/forms.py:55
-msgid "reset"
-msgstr "сбросить"
-
-#: react_django/nav_bar.py:24
-msgid "main page"
-msgstr "главная"
-
-#: react_django/nav_bar.py:26
-msgid "customers"
-msgstr "покупатели"
-
-#: react_django/nav_bar.py:28
-msgid "products"
-msgstr "ткани"
-
-#: react_django/nav_bar.py:30
-msgid "orders"
-msgstr "заказы"
-
-#: react_django/nav_bar.py:37
-msgid "logout"
-msgstr "выйти"
-
-#: react_django/nav_bar.py:40
+#: templates/user_auth/logged_out.html:6
 msgid "login"
 msgstr "войти"
 
-#: react_django/nav_bar.py:47
-msgid "register"
-msgstr "регистрация"
+#: templates/user_auth/login.html:7
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access"
+msgstr ""
 
-#: react_django/settings.py:198
-msgid "Russian"
-msgstr "Русский"
+#: templates/user_auth/login.html:9
+msgid "please login to see this page"
+msgstr "для просмотра этой страницы нужно войти в систему"
 
-#: react_django/templates/list_header.html:10
-msgid "new"
-msgstr "новый"
+#: templates/user_auth/password_change_done.html:4
+msgid "successfully"
+msgstr "успешно"
+
+#~ msgid "are you sure you want to delete"
+#~ msgstr "вы уверены, что хотите удалить"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+
+#~ msgid "search"
+#~ msgstr "поиск"
+
+#~ msgid "reset"
+#~ msgstr "сбросить"
+
+#~ msgid "main page"
+#~ msgstr "главная"
+
+#~ msgid "customers"
+#~ msgstr "покупатели"
+
+#~ msgid "products"
+#~ msgstr "ткани"
+
+#~ msgid "orders"
+#~ msgstr "заказы"
+
+#~ msgid "logout"
+#~ msgstr "выйти"
+
+#~ msgid "register"
+#~ msgstr "регистрация"
+
+#~ msgid "Russian"
+#~ msgstr "Русский"

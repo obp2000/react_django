@@ -45,3 +45,10 @@ class AccessMixin:
             resolved_login_url,
             self.get_redirect_field_name(),
         )
+
+
+def make_label(obj, labels_map):
+    labels = [func() if callable(func) else func for label, func
+                    in labels_map.items()
+                    if getattr(obj, label, None) != None]
+    return ' '.join(labels)

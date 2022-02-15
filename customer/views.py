@@ -1,8 +1,5 @@
-"""
-API endpoints that allow models to be viewed or edited.
-"""
 from bootstrap_modal_forms.generic import BSModalDeleteView
-from django.contrib.auth.mixins import PermissionRequiredMixin
+# from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -11,16 +8,14 @@ from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView, UpdateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
-from react_django.forms import (DeleteFormHelper, DeleteObjectForm,
-                                FilterFormHelper)
+from react_django.form_helpers import DeleteFormHelper, FilterFormHelper
+from react_django.forms import DeleteObjectForm
 
 from .filters import CustomerFilter
-from .forms import (CustomerForm, CustomerFormHelper,
-                    CustomerFormWitDisabledName)
+from .form_helpers import CustomerFormHelper
+from .forms import CustomerForm
 from .models import Customer
 from .tables import CustomerTable
-
-# from react_django.utils import AccessMixin
 
 
 class CustomerQuerysetMixin(object):
@@ -49,7 +44,8 @@ class CustomerList(CustomerQuerysetMixin, SingleTableMixin, FilterView):
         'delete_path_name': 'customer:delete',
         'table_title': _("customers").capitalize(),
         'new_url': reverse_lazy('customer:new'),
-        'list_url': reverse_lazy('customer:list')
+        'list_url': reverse_lazy('customer:list'),
+        'total_count': Customer.objects.count()
     }
 
 

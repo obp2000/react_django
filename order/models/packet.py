@@ -9,4 +9,4 @@ class Packet(IntegerChoices):
     PACKET55 = 55, '55'
     PACKET72 = 72, '72'
     PACKET85 = 85, '85'
-    __empty__ = _('(Unknown)')
+    __empty__ = '----'
