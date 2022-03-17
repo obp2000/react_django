@@ -1,5 +1,10 @@
 {% extends "base_generic.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+	{% if Consts %}
+		<script>
+			var Consts = JSON.parse("{{ Consts|escapejs }}")
+		</script>
+	{% endif %}
 	{% crispy form object_form_helper %}
 {% endblock %}

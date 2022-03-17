@@ -1,3 +1,5 @@
+from json import dumps
+
 from bootstrap_modal_forms.generic import BSModalDeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -11,11 +13,10 @@ from order_item.views import OrderItemInline
 from react_django.form_helpers import DeleteFormHelper, FilterFormHelper
 from react_django.forms import DeleteObjectForm
 
-from .consts import GIFT_WEIGHT, PACKET_WEIGHT, SAMPLES_WEIGHT
 from .filters import OrderFilter
 from .form_helpers import OrderFormHelper
 from .forms import OrderForm
-from .models import Order
+from .models import Consts, Order
 from .tables import OrderTable
 
 
@@ -36,7 +37,8 @@ class OrderEditMixin(OrderSuccessUrlMixin):
     inlines_names = ['order_items']
     extra_context = {
         'object_form_helper': OrderFormHelper,
-        'order_items_formset_helper': OrderItemsFormSetHelper
+        'order_items_formset_helper': OrderItemsFormSetHelper,
+        'Consts': dumps(Consts)
     }
 
     def get_initial(self):
@@ -46,9 +48,9 @@ class OrderEditMixin(OrderSuccessUrlMixin):
             'total_sum': getattr(self.object, 'total_sum', 0),
             'order_items_weight': getattr(self.object, 'order_items_weight', 0),
             'pindex': getattr(self.object, 'pindex', None),
-            'gift_weight': GIFT_WEIGHT,
-            'samples_weight': SAMPLES_WEIGHT,
-            'packet_weight': PACKET_WEIGHT,
+            'gift_weight': Consts['GIFT_WEIGHT'],
+            'samples_weight': Consts['SAMPLES_WEIGHT'],
+            'packet_weight': Consts['PACKET_WEIGHT'],
             'total_weight': getattr(self.object, 'total_weight', 0),
         }
 

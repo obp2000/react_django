@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 22:39+0300\n"
+"POT-Creation-Date: 2022-03-17 12:35+0300\n"
 "PO-Revision-Date: 2021-05-30 22:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,24 +21,24 @@ msgstr ""
 "X-Generator: Poedit 2.4.1\n"
 
 #: user_auth/forms.py:20
-msgid "enter"
-msgstr "вход"
+msgid "login"
+msgstr "войти"
 
 #: user_auth/forms.py:30
 msgid "register"
 msgstr "регистрация"
 
-#: user_auth/forms.py:46
+#: user_auth/forms.py:51
 msgid "change"
 msgstr "изменить"
 
-#: user_auth/views.py:17 user_auth/views.py:22 user_auth/views.py:29
-#: user_auth/views.py:36 user_auth/views.py:41
+#: user_auth/views.py:20 user_auth/views.py:25 user_auth/views.py:32
+#: user_auth/views.py:39 user_auth/views.py:44
 msgid "successfully"
 msgstr "успешно"
 
-#~ msgid "login"
-#~ msgstr "войти"
+#~ msgid "enter"
+#~ msgstr "вход"
 
 #~ msgid ""
 #~ "Your account doesn't have access to this page. To proceed, please login "

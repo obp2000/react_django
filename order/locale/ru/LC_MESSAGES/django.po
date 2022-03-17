@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 22:39+0300\n"
+"POT-Creation-Date: 2022-03-17 12:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,15 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: order/forms.py:16
+#: order/api/consts_data.py:9
+msgid "post cost with packet"
+msgstr ""
+
+#: order/api/consts_data.py:10
+msgid "post discount"
+msgstr "скидка на почтовые"
+
+#: order/api/consts_data.py:13 order/forms.py:16
 msgid "samples"
 msgstr "образцы"
 
@@ -104,16 +112,16 @@ msgstr "обновлен"
 msgid "order"
 msgstr "заказ"
 
-#: order/models/order.py:45 order/views.py:68
+#: order/models/order.py:45 order/views.py:70
 msgid "orders"
 msgstr "заказы"
 
-#: order/views.py:78
+#: order/views.py:80
 #, python-format
 msgid "order %(customer)s was created successfully"
 msgstr "заказ %(customer)s создан успешно"
 
-#: order/views.py:84
+#: order/views.py:86
 #, python-format
 msgid "order %(customer)s was updated successfully"
 msgstr "заказ %(customer)s обновлен успешно"

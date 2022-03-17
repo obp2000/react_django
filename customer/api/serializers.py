@@ -24,7 +24,7 @@ class CustomerSerializer(ModelSerializer):
     """
     Customer serializer.
     """
-    city = CitySerializer()
+    city = CitySerializer(label=Customer._meta.get_field('city').verbose_name.capitalize())
 
     class Meta:
         """

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 22:39+0300\n"
+"POT-Creation-Date: 2022-03-17 12:35+0300\n"
 "PO-Revision-Date: 2021-05-30 22:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,13 +20,29 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.4.1\n"
 
+#: react_django/api/consts.py:36
+msgid "new"
+msgstr "новый"
+
+#: react_django/api/consts.py:37
+msgid "edit"
+msgstr "редактировать"
+
+#: react_django/api/consts.py:38
+msgid "delete"
+msgstr "удалить"
+
+#: react_django/api/consts.py:39
+msgid "add"
+msgstr "добавить"
+
+#: react_django/api/consts.py:40 react_django/form_helpers.py:44
+msgid "search"
+msgstr "поиск"
+
 #: react_django/form_helpers.py:28
 msgid "Yes"
 msgstr "Да"
-
-#: react_django/form_helpers.py:44
-msgid "search"
-msgstr "поиск"
 
 #: react_django/form_helpers.py:48
 msgid "reset"
@@ -36,34 +52,34 @@ msgstr "сбросить"
 msgid "save"
 msgstr "сохранить"
 
-#: react_django/nav_bar.py:12
-msgid "main page"
+#: react_django/nav_bar.py:16
+msgid "main"
 msgstr "главная"
 
-#: react_django/nav_bar.py:14
-msgid "customers"
-msgstr "покупатели"
-
-#: react_django/nav_bar.py:16
-msgid "products"
-msgstr "ткани"
-
-#: react_django/nav_bar.py:18
-msgid "orders"
-msgstr "заказы"
-
-#: react_django/nav_bar.py:26
-msgid "logout"
-msgstr "выйти"
-
-#: react_django/nav_bar.py:29
+#: react_django/nav_bar.py:39
 msgid "login"
 msgstr "войти"
 
-#: react_django/nav_bar.py:36
+#: react_django/nav_bar.py:44
 msgid "register"
 msgstr "регистрация"
 
-#: react_django/settings.py:90
+#: react_django/nav_bar.py:49
+msgid "logout"
+msgstr "выйти"
+
+#: react_django/settings.py:91
 msgid "Russian"
 msgstr "Русский"
+
+#~ msgid "main page"
+#~ msgstr "главная"
+
+#~ msgid "customers"
+#~ msgstr "покупатели"
+
+#~ msgid "products"
+#~ msgstr "ткани"
+
+#~ msgid "orders"
+#~ msgstr "заказы"

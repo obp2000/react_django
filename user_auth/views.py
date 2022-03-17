@@ -1,4 +1,6 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.models import User
 from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordChangeDoneView,
                                        PasswordChangeView)
@@ -6,6 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 # from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 
 from .forms import LoginForm, RegisterForm, UserPasswordChangeForm
@@ -23,7 +26,7 @@ class UserLogoutView(SuccessMessageMixin, LogoutView):
 
 
 class UserRegisterView(SuccessMessageMixin, CreateView):
-    model = User
+    model = get_user_model()
     form_class = RegisterForm
     template_name = 'user_auth/register.html'
     success_message = _("successfully").title()
@@ -41,14 +44,9 @@ class UserPasswordChangeDoneView(SuccessMessageMixin, PasswordChangeDoneView):
     success_message = _("successfully").title()
 
 
-# def register1(request):
-#     if request.method == "POST":
-#         form = RegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
+class UserDetail(LoginRequiredMixin, DetailView):
+    template_name = 'user_auth/detail.html'
+    login_url = reverse_lazy('login')
 
-#         return redirect("/home")
-#     else:
-#         form = RegisterForm()
-#     return render(request, "register/register.html",
-#                   {"form": form})
+    def get_object(self):
+        return self.request.user

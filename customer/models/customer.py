@@ -13,7 +13,8 @@ class Customer(Model):
     city = ForeignKey(City,
                       SET_NULL,
                       blank=True,
-                      null=True)
+                      null=True,
+                      verbose_name=_('city'))
     address = CharField(_('address'), max_length=255, blank=True)
     created_at = DateTimeField(_('created_at'), auto_now_add=True)
     updated_at = DateTimeField(_('updated_at'), auto_now=True)

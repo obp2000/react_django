@@ -103,6 +103,8 @@ class Product(Model):
                       'name': self.name}
         return make_label(self, labels_map)
 
+    Consts = {'PriceCoeffs': [1, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 1.2, 1.3, 1.4]}
+
     class Meta:
         ordering = ['-updated_at']
         verbose_name = _('product')

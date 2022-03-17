@@ -16,19 +16,6 @@ const tags = {
 	meters_in_roll: "input#id_meters_in_roll"
 }
 
-const PriceCoeffs = [
-	1,
-	1.5,
-	1.6,
-	1.7,
-	1.8,
-	1.9,
-	2,
-	1.2,
-	1.3,
-	1.4
-]
-
 var price_rub_m = ({
 	dollar_price = 0,
 	dollar_rate = 0,
@@ -93,7 +80,7 @@ const set_density_for_count = ({
 	}))
 
 const on_price_rub_m_change = function() {
-	$(tags.price.with_coeffs).html(prices_with_coeffs(this.value, PriceCoeffs))
+	$(tags.price.with_coeffs).html(prices_with_coeffs(this.value, Consts.PriceCoeffs))
 }
 
 const on_dollar_price_change = function() {

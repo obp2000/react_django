@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 22:39+0300\n"
+"POT-Creation-Date: 2022-03-17 12:35+0300\n"
 "PO-Revision-Date: 2021-05-30 22:08+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -57,16 +57,25 @@ msgstr "обновлен"
 msgid "customer"
 msgstr "покупатель"
 
-#: customer/models/customer.py:46 customer/views.py:45
+#: customer/models/customer.py:46 customer/views.py:46
 msgid "customers"
 msgstr "покупатели"
 
-#: customer/views.py:53
+#: customer/views.py:54
 #, python-format
 msgid "%(nick)s was created successfully"
 msgstr "%(nick)s создан успешно"
 
-#: customer/views.py:57
+#: customer/views.py:58
 #, python-format
 msgid "%(nick)s was updated successfully"
 msgstr "%(nick)s обновлен успешно"
+
+#~ msgid "new"
+#~ msgstr "Новый"
+
+#~ msgid "edit"
+#~ msgstr "Редактировать"
+
+#~ msgid "delete"
+#~ msgstr "Удалить"

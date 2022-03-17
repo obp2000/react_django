@@ -1,7 +1,7 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML, Column, Field, Fieldset, Layout, Row
-from customer.models import Customer
-from django.utils.translation import gettext_lazy as _
+from crispy_forms.layout import HTML, Fieldset, Layout
+# from customer.models import Customer
+# from django.utils.translation import gettext_lazy as _
 from react_django.form_helpers import SaveButton
 
 

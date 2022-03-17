@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'product',
     'order_item',
     'order',
+    'react_django'
 ]
 
 # Internationalization
@@ -123,11 +124,11 @@ REST_FRAMEWORK = {
     'SEARCH_PARAM': 'term',
     'DATETIME_FORMAT': DATETIME_FORMAT,
     'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.MultiPartParser',
-        # 'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.JSONParser',
-    ]
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers.MultiPartParser',
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.JSONParser',
+    # ]
     # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
     #     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -266,3 +267,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'user_auth.api.serializers.UserLoginSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": 'user_auth.api.serializers.UserRegisterSerializer'
+}

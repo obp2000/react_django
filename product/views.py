@@ -1,3 +1,5 @@
+from json import dumps
+
 from bootstrap_modal_forms.generic import BSModalDeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -11,7 +13,7 @@ from react_django.forms import DeleteObjectForm
 from .filters import ProductFilter
 from .form_helpers import ProductFormHelper
 from .forms import ProductForm
-from .models import Product
+from .models import Consts, Product
 from .tables import ProductTable
 
 
@@ -26,7 +28,8 @@ class ProductSuccessUrlMixin:
 class ProductEditMixin(ProductQuerysetMixin, ProductSuccessUrlMixin):
     form_class = ProductForm
     template_name = "object_form.html"
-    extra_context = {'object_form_helper': ProductFormHelper}
+    extra_context = {'object_form_helper': ProductFormHelper,
+                     'Consts': dumps(Consts)}
 
 
 class ProductList(ProductQuerysetMixin, SingleTableMixin, FilterView):

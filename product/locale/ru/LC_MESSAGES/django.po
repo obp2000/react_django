@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 22:39+0300\n"
+"POT-Creation-Date: 2022-03-17 12:35+0300\n"
 "PO-Revision-Date: 2021-05-30 22:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -118,11 +118,11 @@ msgstr "создана"
 msgid "updated_at"
 msgstr "обновлена"
 
-#: product/models/product.py:108
+#: product/models/product.py:110
 msgid "product"
 msgstr "ткань"
 
-#: product/models/product.py:109 product/views.py:42
+#: product/models/product.py:111 product/views.py:45
 msgid "products"
 msgstr "ткани"
 
@@ -142,12 +142,12 @@ msgstr "двухнитка"
 msgid "three threads"
 msgstr "трёхнитка"
 
-#: product/views.py:50
+#: product/views.py:53
 #, python-format
 msgid "%(name)s was created successfully"
 msgstr "%(name)s создана успешно"
 
-#: product/views.py:54
+#: product/views.py:57
 #, python-format
 msgid "%(name)s was updated successfully"
 msgstr "%(name)s обновлена успешно"

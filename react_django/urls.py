@@ -50,7 +50,7 @@ urlpatterns = [
     path('orders/', include('order.urls', namespace='order')),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', include('user_auth.urls')),
-    path('', CustomerList.as_view()),
+    path('', CustomerList.as_view(), name='index'),
 ]
 
 if settings.DEBUG:

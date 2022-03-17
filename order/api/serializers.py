@@ -15,7 +15,7 @@ class OrderSerializer(WritableNestedModelSerializer):
     """
     Order serializer.
     """
-    customer = CustomerSerializer()
+    customer = CustomerSerializer(label=Order._meta.get_field('customer').verbose_name.capitalize())
     order_items = OrderItemSerializer(many=True, allow_null=True)
     order_items_amount = ReadOnlyField()
     order_items_cost = ReadOnlyField()

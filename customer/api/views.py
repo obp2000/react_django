@@ -1,12 +1,12 @@
 """
 API endpoints that allow models to be viewed or edited.
 """
-from rest_framework import status
-from rest_framework.response import Response
+from react_django.api.consts import get_options
 from rest_framework.viewsets import ModelViewSet
 
-from ..models import City, Customer
+from ..models import City
 from ..views import CustomerQuerysetMixin
+from .consts_data import consts_data
 from .serializers import CitySerializer, CustomerSerializer
 
 
@@ -20,6 +20,7 @@ class CityViewSet(ModelViewSet):
     search_fields = ['pindex', 'city']
 
 
+
 class CustomerViewSet(CustomerQuerysetMixin, ModelViewSet):
     """
     API endpoint that allows customers to be viewed or edited.
@@ -31,7 +32,4 @@ class CustomerViewSet(CustomerQuerysetMixin, ModelViewSet):
     # ]
 
     def options(self, request, *args, **kwargs):
-        meta = self.metadata_class()
-        data = meta.determine_metadata(request, self)
-        data['name'] = Customer._meta.verbose_name.capitalize()
-        return Response(data=data, status=status.HTTP_200_OK)
+        return get_options(self, request, consts_data)

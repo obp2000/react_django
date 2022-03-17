@@ -10,7 +10,5 @@
  }
 
  $(function() {
-
  	$(delete_buttons).each(attach_modal_delete_form)
-
  })

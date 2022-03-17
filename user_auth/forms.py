@@ -17,7 +17,7 @@ class LoginForm(AuthenticationForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-3'
-        self.helper.add_input(Submit('submit', _('enter').title()))
+        self.helper.add_input(Submit('submit', _('login').title()))
 
 
 class RegisterForm(UserCreationForm):
@@ -33,7 +33,12 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username",
+                  "email",
+                  "first_name",
+                  "last_name",
+                  "password1",
+                  "password2"]
 
 
 class UserPasswordChangeForm(PasswordChangeForm):
