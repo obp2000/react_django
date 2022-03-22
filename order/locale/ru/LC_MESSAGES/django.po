@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-17 12:35+0300\n"
+"POT-Creation-Date: 2022-03-20 20:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,19 +22,24 @@ msgstr ""
 
 #: order/api/consts_data.py:9
 msgid "post cost with packet"
-msgstr ""
+msgstr "почтовые с пакетом"
 
 #: order/api/consts_data.py:10
 msgid "post discount"
 msgstr "скидка на почтовые"
 
-#: order/api/consts_data.py:13 order/forms.py:16
-msgid "samples"
-msgstr "образцы"
-
-#: order/forms_with_sums_old.py:14 order/tables.py:10
+#: order/api/consts_data.py:13 order/forms_with_sums_old.py:14
+#: order/tables.py:10
 msgid "sum"
 msgstr "сумма"
+
+#: order/api/consts_data.py:14
+msgid "need gift"
+msgstr "нужен подарок"
+
+#: order/api/consts_data.py:15 order/forms.py:16
+msgid "samples"
+msgstr "образцы"
 
 #: order/forms_with_sums_old.py:17
 msgid "weight"

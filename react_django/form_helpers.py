@@ -25,7 +25,7 @@ class DeleteFormHelper(FormHelper):
                 css_class="modal-body"
             ),
             Div(
-                Submit('delete', _('Yes'), css_class="btn-danger"),
+                Submit('delete', _('yes').capitalize(), css_class="btn-danger"),
                 css_class="modal-footer"
             )
         )

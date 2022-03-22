@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-17 12:35+0300\n"
+"POT-Creation-Date: 2022-03-20 20:09+0300\n"
 "PO-Revision-Date: 2021-05-30 22:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -36,13 +36,17 @@ msgstr "удалить"
 msgid "add"
 msgstr "добавить"
 
-#: react_django/api/consts.py:40 react_django/form_helpers.py:44
+#: react_django/api/consts.py:41 react_django/form_helpers.py:28
+msgid "yes"
+msgstr "да"
+
+#: react_django/api/consts.py:42
+msgid "no"
+msgstr "нет"
+
+#: react_django/api/consts.py:43 react_django/form_helpers.py:44
 msgid "search"
 msgstr "поиск"
-
-#: react_django/form_helpers.py:28
-msgid "Yes"
-msgstr "Да"
 
 #: react_django/form_helpers.py:48
 msgid "reset"
@@ -71,6 +75,9 @@ msgstr "выйти"
 #: react_django/settings.py:91
 msgid "Russian"
 msgstr "Русский"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
 
 #~ msgid "main page"
 #~ msgstr "главная"

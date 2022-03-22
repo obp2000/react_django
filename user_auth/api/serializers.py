@@ -10,42 +10,24 @@ from user_auth.forms import LoginForm, RegisterForm
 
 class UserRegisterSerializer(RegisterSerializer):
 
-	def get_parent_field(field_name):
-		return RegisterSerializer().fields[field_name]
+	form_fields = RegisterForm().fields
 
-	def get_parent_username_field():
-		return get_parent_field('username')
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['username'].label = self.form_fields['username'].label
+		self.fields['username'].help_text = self.form_fields['username'].help_text
+		self.fields['email'].required = self.form_fields['email'].required
+		self.fields['password1'].label = self.form_fields['password1'].label
+		self.fields['password1'].help_text = self.form_fields['password1'].help_text
+		self.fields['password2'].label = self.form_fields['password2'].label
+		self.fields['password2'].help_text = self.form_fields['password2'].help_text
 
-	def get_parent_email_field():
-		return get_parent_field('email')
-
-	def get_parent_password1_field():
-		return get_parent_field('password1')
-
-	def get_parent_password2_field():
-		return get_parent_field('password2')
-
-	def help_text(field_name):
-		return getattr(RegisterForm().fields[field_name], 'help_text', None)
-
-	def label(field_name):
-		return getattr(RegisterForm().fields[field_name], 'label', None)
-
-	def required(field_name):
-		return getattr(RegisterForm().fields[field_name], 'required', None)
-
-	username = CharField(source='get_parent_username_field',
-		help_text=help_text('username'), label=label('username'))
-	email = CharField(source='get_parent_email_field',
-		label=label('email'))
-	first_name = CharField(write_only=True, required=required('first_name'),
-		label=label('first_name'))
-	last_name = CharField(write_only=True, required=required('last_name'),
-		label=label('last_name'))
-	password1 = CharField(source='get_parent_password1_field',
-		help_text=help_text('password1'), label=label('password1'))
-	password2 = CharField(source='get_parent_password2_field',
-		help_text=help_text('password2'), label=label('password2'))
+	first_name = CharField(write_only=True,
+		required=form_fields['first_name'].required,
+		label=form_fields['first_name'].label)
+	last_name = CharField(write_only=True,
+		required=form_fields['last_name'].required,
+		label=form_fields['last_name'].label)
 
 	def get_cleaned_data(self):
 		cleaned_data = super().get_cleaned_data()
@@ -56,22 +38,9 @@ class UserRegisterSerializer(RegisterSerializer):
 
 class UserLoginSerializer(LoginSerializer):
 
-	def get_parent_field(field_name):
-		return LoginSerializer().fields[field_name]
+	form_fields = LoginForm().fields
 
-	def get_parent_username_field():
-		return get_parent_field('username')
-
-	def get_parent_password_field():
-		return get_parent_field('password')
-
-	def label(field_name):
-		return getattr(LoginForm().fields[field_name], 'label', None)
-
-	username = CharField(source='get_parent_username_field',
-		label=label('username'))
-	password = CharField(source='get_parent_password_field',
-		label=label('password'))
-
-	def to_internal_value(self, data):
-		return data
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['username'].label = self.form_fields['username'].label
+		self.fields['password'].label = self.form_fields['password'].label

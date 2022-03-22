@@ -10,6 +10,8 @@ consts_data = {
     'post_discount': {'label': _('post discount').capitalize()},
     'total_postals': {'label': OrderForm().fields['total_postals'].label},
     'total_sum': {'label': OrderForm().fields['total_sum'].label},
+    'order_items_cost': {'label': _('sum').capitalize()},
+    'need_gift': {'label': _('need gift').capitalize()},
     'samples': {'label': _('samples').capitalize()},
     'Consts': Consts
     }
