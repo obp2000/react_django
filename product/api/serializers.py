@@ -50,6 +50,7 @@ class ProductSerializer(ModelSerializer):
                   '': None}
 
     def to_internal_value(self, data):
+        # print('product_data: ', data)
         data_dict = data.dict()
         print('product_data: ', data_dict)
         mapped_fields = {key: self.values_map[value] for

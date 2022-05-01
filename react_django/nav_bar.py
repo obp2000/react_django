@@ -49,6 +49,8 @@ logout_menu_item = {
             'label': _('logout').title()
     }
 
+brand_text = "Best & C"
+
 
 class MainMenu(NavGroup):
     """Contains the navitems for the site pages."""
@@ -95,7 +97,7 @@ class MainNavBar(NavBar):
 
     class Meta:
         brand = Brand(
-            text="Best & C",
+            text=brand_text,
             href="/",
             # attrs={"target": "_"},
             image=Image(

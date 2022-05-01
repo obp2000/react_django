@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 20:09+0300\n"
+"POT-Creation-Date: 2022-04-20 23:55+0300\n"
 "PO-Revision-Date: 2021-05-30 22:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,41 +20,49 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: react_django/api/consts.py:36
+#: react_django/api/consts.py:42
 msgid "new"
 msgstr "новый"
 
-#: react_django/api/consts.py:37
+#: react_django/api/consts.py:43
 msgid "edit"
 msgstr "редактировать"
 
-#: react_django/api/consts.py:38
+#: react_django/api/consts.py:44
 msgid "delete"
 msgstr "удалить"
 
-#: react_django/api/consts.py:39
+#: react_django/api/consts.py:45
 msgid "add"
 msgstr "добавить"
 
-#: react_django/api/consts.py:41 react_django/form_helpers.py:28
+#: react_django/api/consts.py:46 react_django/form_helpers.py:54
+msgid "save"
+msgstr "сохранить"
+
+#: react_django/api/consts.py:48 react_django/form_helpers.py:28
 msgid "yes"
 msgstr "да"
 
-#: react_django/api/consts.py:42
+#: react_django/api/consts.py:49
 msgid "no"
 msgstr "нет"
 
-#: react_django/api/consts.py:43 react_django/form_helpers.py:44
+#: react_django/api/consts.py:50 react_django/form_helpers.py:44
 msgid "search"
 msgstr "поиск"
+
+#: react_django/api/consts.py:57
+msgid "from"
+msgstr "от"
+
+#: react_django/api/consts.py:58
+msgid "back"
+msgstr "назад"
 
 #: react_django/form_helpers.py:48
 msgid "reset"
 msgstr "сбросить"
-
-#: react_django/form_helpers.py:54
-msgid "save"
-msgstr "сохранить"
 
 #: react_django/nav_bar.py:16
 msgid "main"

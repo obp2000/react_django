@@ -3,9 +3,9 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator, validate_integer
 from django.db.models import Field
 from django.utils.translation import gettext_lazy as _
-from react_django.nav_bar import (login_menu_item, logout_menu_item,
-                                  menu_items, register_menu_item,
-                                  user_menu_item)
+from react_django.nav_bar import (brand_text, login_menu_item,
+                                  logout_menu_item, menu_items,
+                                  register_menu_item, user_menu_item)
 from rest_framework import status
 from rest_framework.response import Response
 from user_auth.forms import RegisterForm
@@ -13,9 +13,15 @@ from user_auth.forms import RegisterForm
 
 def main_menu(is_authenticated):
     if is_authenticated:
-        return menu_items + [user_menu_item, logout_menu_item]
+        return menu_items + [user_menu_item]
     else:
-        return menu_items + [login_menu_item]
+        return menu_items
+
+def auth_menu_item(is_authenticated):
+    if is_authenticated:
+        return logout_menu_item
+    else:
+        return login_menu_item
 
 def error_messages():
     messages = Field.default_error_messages
@@ -37,6 +43,7 @@ def common_consts(is_authenticated):
             'edit': _('edit').capitalize(),
             'delete': _('delete').capitalize(),
             'add': _('add').capitalize(),
+            'save': _('save').capitalize(),
             'successfully': f"{_('successfully').capitalize()}!",
             'yes': _('yes').capitalize(),
             'no': _('no').capitalize(),
@@ -44,16 +51,23 @@ def common_consts(is_authenticated):
             'login': login_menu_item['label'],
             'register': register_menu_item['label'],
             'main_menu': main_menu(is_authenticated),
-            'error_messages': error_messages()
+            'auth_menu_item': auth_menu_item(is_authenticated),
+            'brand_text': brand_text,
+            'error_messages': error_messages(),
+            'from': _('from'),
+            'back': _('back').capitalize()
         }
 
 def get_options(self, request, consts_data):
     meta = self.metadata_class()
     data = meta.determine_metadata(request, self)
+    # print('request.user', request.user.is_authenticated)
+    data.update({'common_consts':
+        common_consts(request.user.is_authenticated)})
     if data.get('actions', None):
         for method in ['PUT', 'POST']:
             if data['actions'].get(method, None):
                 data['actions'][method].update(consts_data)
-                data['actions'][method].update({'common_consts':
-                    common_consts(request.GET.get('isAuthenticated', None) == 'true')})
+                # data['actions'][method].update({'common_consts':
+                #     common_consts(request.GET.get('isAuthenticated', None) == 'true')})
     return Response(data=data, status=status.HTTP_200_OK)

@@ -270,6 +270,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'user_auth.api.serializers.UserLoginSerializer',
+    'TOKEN_SERIALIZER': 'user_auth.api.serializers.UserTokenSerializer',
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {

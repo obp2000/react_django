@@ -1,11 +1,12 @@
 from allauth.account import app_settings as allauth_settings
 from allauth.utils import get_username_max_length
 from dj_rest_auth.registration.serializers import RegisterSerializer
-from dj_rest_auth.serializers import LoginSerializer
+from dj_rest_auth.serializers import LoginSerializer, TokenSerializer
 from django.utils.translation import gettext_lazy as _
 from react_django.nav_bar import login_menu_item, register_menu_item
 from rest_framework.serializers import CharField, SerializerMethodField
 from user_auth.forms import LoginForm, RegisterForm
+from user_auth.views import UserLoginView
 
 
 class UserRegisterSerializer(RegisterSerializer):
@@ -44,3 +45,18 @@ class UserLoginSerializer(LoginSerializer):
 		super().__init__(*args, **kwargs)
 		self.fields['username'].label = self.form_fields['username'].label
 		self.fields['password'].label = self.form_fields['password'].label
+
+
+class UserTokenSerializer(TokenSerializer):
+
+	message = SerializerMethodField()
+
+	def get_message(self, obj):
+		return UserLoginView.success_message
+
+	class Meta(TokenSerializer.Meta):
+		fields = TokenSerializer.Meta.fields + ('message', )
+
+	# def __init__(self, *args, **kwargs):
+	# 	super().__init__(*args, **kwargs)
+	# 	self.fields['message'] = message
