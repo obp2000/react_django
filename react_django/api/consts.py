@@ -55,7 +55,9 @@ def common_consts(is_authenticated):
             'brand_text': brand_text,
             'error_messages': error_messages(),
             'from': _('from'),
-            'back': _('back').capitalize()
+            'back': _('back').capitalize(),
+            'not_found': _('not found').capitalize(),
+            'count': _('count').capitalize()
         }
 
 def get_options(self, request, consts_data):

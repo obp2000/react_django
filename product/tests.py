@@ -3,45 +3,20 @@ from collections import ChainMap
 
 # from unittest.mock import patch
 from django.conf import settings
-from django.test import modify_settings
 from django.urls import reverse
 from PIL import Image
 from rest_framework import status
-# from rest_framework.test import override_settings, modify_settings
 from rest_framework.routers import DefaultRouter
-from rest_framework.test import APITestCase, override_settings
+from rest_framework.test import APITestCase
 
+from .api.views import ProductViewSet
 from .models import Product
-from .views import ProductViewSet
-
-rest1 = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
-    'DEFAULT_PAGINATION_CLASS':
-    'react_django.utils.PageNumberPaginationWithNumPages',
-    'PAGE_SIZE': 2,
-    'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
-    'SEARCH_PARAM': 'term',
-    'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
-    # 'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
-}
 
 
-# @override_settings(REST_FRAMEWORK=rest1)
 class ProductAPITestCase(APITestCase):
     """
     Test products API
     """
-
-    # @classmethod
-    # def setUpClass(cls):
-    #     """
-    #     Create 2 test products
-    #     """
-    #     super().setUpClass()
-    #     cls.product1 = Product.objects.create(name='Product1', price=300)
-    #     cls.product2 = Product.objects.create(name='Product2', price=340)
-
     def setUp(self):
         """
         Create 3 test products
@@ -50,40 +25,22 @@ class ProductAPITestCase(APITestCase):
         self.product2 = Product.objects.create(name='Product2', price=340)
         self.product3 = Product.objects.create(name='Product3', price=350)
 
-    # @override_settings(REST_FRAMEWORK=ChainMap({'PAGE_SIZE': 2},
-    #                                            settings.REST_FRAMEWORK))
-    # @override_settings(REST_FRAMEWORK=rest1)
-    page_size = {'PAGE_SIZE': 2}
-
-    @modify_settings(REST_FRAMEWORK={
-        'remove': 'PAGE_SIZE',
-        'append': page_size
-    })
     def test_list_products(self):
         """
         Test that we can get a list of products
         """
         url = reverse('api:product-list')
-        print('dddddddddddddd')
-        print(settings.REST_FRAMEWORK['PAGE_SIZE'])
-        # url = '/api/products/'
-        # page_size = {'PAGE_SIZE': 2}
-        # with modify_settings(REST_FRAMEWORK={
-        #         'remove': 'PAGE_SIZE',
-        #         'append': page_size
-        #         }):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        print(response)
         data = response.data
         self.assertEqual(data['totalCount'], Product.objects.count())
         self.assertEqual(data['totalPages'], 2)
         results = data['results']
         self.assertEqual(len(results), 2)
         first_result = results[0]
-        self.assertEqual(first_result['id'], self.product1.id)
-        self.assertEqual(first_result['name'], self.product1.name)
-        self.assertEqual(first_result['price'], self.product1.price)
+        self.assertEqual(first_result['id'], self.product3.id)
+        self.assertEqual(first_result['name'], self.product3.name)
+        self.assertEqual(first_result['price'], self.product3.price)
         second_result = results[1]
         self.assertEqual(second_result['id'], self.product2.id)
         self.assertEqual(second_result['name'], self.product2.name)
@@ -91,12 +48,12 @@ class ProductAPITestCase(APITestCase):
 
     def test_product_list_route(self):
         """
-        Test that we've got routing set up for Products
+        Test that we've got routing set up for Products format
         """
         view = ProductViewSet()
-        view.basename = DefaultRouter().get_default_basename(ProductViewSet)
+        view.basename = f'api:{DefaultRouter().get_default_basename(ProductViewSet)}'
         view.request = None
-        self.assertEqual(view.reverse_action('list'), '/products/')
+        self.assertEqual(view.reverse_action('list'), '/api/products/')
 
     def test_product_create_route(self):
         """
@@ -195,13 +152,10 @@ class ProductAPITestCase(APITestCase):
         self.assertEqual(results[0]['name'], self.product2.name)
         self.assertEqual(results[0]['price'], self.product2.price)
 
-    @override_settings(REST_FRAMEWORK=ChainMap({'PAGE_SIZE': 2},
-                                               settings.REST_FRAMEWORK))
     def test_paginated_list_products(self):
         """
         Test that we can get a certian page of products
         """
-        # mock_page_size.return_value = 2
         url = reverse('api:product-list') + '?page=1'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -211,9 +165,9 @@ class ProductAPITestCase(APITestCase):
         results = data['results']
         self.assertEqual(len(results), 2)
         first_result = results[0]
-        self.assertEqual(first_result['id'], self.product1.id)
-        self.assertEqual(first_result['name'], self.product1.name)
-        self.assertEqual(first_result['price'], self.product1.price)
+        self.assertEqual(first_result['id'], self.product3.id)
+        self.assertEqual(first_result['name'], self.product3.name)
+        self.assertEqual(first_result['price'], self.product3.price)
         second_result = results[1]
         self.assertEqual(second_result['id'], self.product2.id)
         self.assertEqual(second_result['name'], self.product2.name)
