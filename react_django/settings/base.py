@@ -147,8 +147,8 @@ REST_FRAMEWORK = {
     # 'PAGE_SIZE': 8,
     'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.SearchFilter'],
     'SEARCH_PARAM': 'term',
-    'DATETIME_FORMAT': DATETIME_FORMAT,
-    'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
+    # 'DATETIME_FORMAT': DATETIME_FORMAT,
+    # 'DATETIME_INPUT_FORMATS': DATETIME_INPUT_FORMATS,
     # 'DEFAULT_PARSER_CLASSES': [
     #     'rest_framework.parsers.MultiPartParser',
     #     'rest_framework.parsers.FormParser',

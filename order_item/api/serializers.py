@@ -24,8 +24,7 @@ class OrderItemSerializer(ModelSerializer):
         Set Order item serializer.
         """
         model = OrderItem
-        fields = ['id', 'order', 'product', 'amount', 'price', 'cost',
-            'weight']
+        fields = ['id', 'order', 'product', 'amount', 'price', 'cost', 'weight']
 
     def to_internal_value(self, data):
         print('order_item_data: ', data)

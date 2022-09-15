@@ -26,7 +26,7 @@ msgstr "новый"
 
 #: templates/order_item/table_inline_formset.html:83
 msgid "post cost with packet"
-msgstr "тариф почты с пакетом"
+msgstr "почтовые с пакетом"
 
 #: templates/user_auth/logged_out.html:6
 msgid "login"

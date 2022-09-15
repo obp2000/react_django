@@ -17,7 +17,7 @@ class CityViewSet(ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
     # pagination_class = None
-    search_fields = ['pindex', 'city']
+    search_fields = ['^city', '^pindex']
 
 
 
